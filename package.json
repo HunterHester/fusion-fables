@@ -1,14 +1,38 @@
+<<<<<<< HEAD
 { 
     "main": "server.js",
     "scripts": {
     "start": "node server.js",
     "watch": "nodemon server.js"
   },
+=======
+{
+  "name": "group-project-2",
+  "description": "Group-Project-2 (Blog)",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node server.js",
+    "seed": "node seeds/seed.js",
+    "lint": "npx eslint **/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HunterHester/Group-Project-2.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HunterHester/Group-Project-2/issues"
+  },
+  "homepage": "https://github.com/HunterHester/Group-Project-2#readme",
+>>>>>>> 22c03b99d075212eeb4b97474f47330f38019afd
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.6",
     "dotenv": "^16.0.3",
-    "eslint": "^8.40.0",
     "express": "^4.18.2",
     "express-handlebars": "^7.0.7",
     "express-session": "^1.17.3",
@@ -17,5 +41,8 @@
     "mysql2": "^3.3.0",
     "nodemon": "^2.0.22",
     "sequelize": "^6.31.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.40.0"
   }
 }
