@@ -16,8 +16,8 @@ Post.init(
             primaryKey: true,
             autoIncrement: true,
             },
-            hasComments: {
-            type: DataTypes.BOOL,
+            numComments: {
+            type: DataTypes.INTEGER,
             defaultValue: 0,
             },
             date: {
