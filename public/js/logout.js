@@ -1,0 +1,1 @@
+// create logout function (POST)
