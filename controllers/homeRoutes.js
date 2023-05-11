@@ -1,0 +1,1 @@
+// get route, redirect user to blog if already signed in
