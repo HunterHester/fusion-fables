@@ -1,4 +1,9 @@
-{
+{ 
+    "main": "server.js",
+    "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
   "dependencies": {
     "bcrypt": "^5.1.0",
     "connect-session-sequelize": "^7.1.6",
