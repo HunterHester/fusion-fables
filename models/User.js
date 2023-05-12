@@ -2,54 +2,38 @@ const { Model, DataTypes } = require('sequelize');
 const bcrypt = require('bcrypt');
 const sequelize = require('../config/connection');
 
-class Post extends Model {
+class User extends Model {
     checkPassword(loginPw) {
     return bcrypt.compareSync(loginPw, this.password);
     }
 }
 
-Post.init(
+
+User.init(
     {
         id: {
-            type: DataTypes.INTEGER,
-            allowNull: false,
-            primaryKey: true,
-            autoIncrement: true,
-            },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
+
+        },
+        username: {
+
+        },
+        password: {
+
+        },
+        email: {
+
         }
-        numComments: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
-        },
-        date: {
-            type: DataTypes.DATE,
-            allowNull: false,
-        },
-        time: {
-            type: Datatypes.TIME,
-            allowNull: false,
-        },
-        user_id: {
-
-        },
-        is_public: {
-
-        },
-        allow_comments: {
-
-        },
     },
     {
         hooks: {
             beforeCreate: async (newBlogData) => {
             newBlogData.password = await bcrypt.hash(newBlogData.password, 10);
+            newBlogData.email = await bcrypt.hash(newBlogData.email, 10);
             return newBlogData;
             },
             beforeUpdate: async (updatedBlogData) => {
             updatedBlogData.password = await bcrypt.hash(updatedBlogData.password, 10);
+            updatedBlogData.email = await bcrypt.hash(newBlogData.email, 10);
             return updatedBlogDBlog
             },
         },
@@ -57,8 +41,8 @@ Post.init(
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post',
+        modelName: 'user',
         }
     );
     
-    module.exports = Post;
+    module.exports = User;
