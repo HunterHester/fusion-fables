@@ -1,4 +1,6 @@
 const router = require('express').Router();
+const { Comment, Post, User } = require('../models');
+
 
 // get route, redirect user to blog if already signed in
 router.get('/', async (req, res) => {

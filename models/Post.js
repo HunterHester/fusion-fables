@@ -29,7 +29,7 @@ Post.init(
             allowNull: false,
         },
         time: {
-            type: Datatypes.TIME,
+            type: DataTypes.TIME,
             allowNull: false,
         },
         user_id: {
@@ -61,4 +61,4 @@ Post.init(
         }
     );
     
-    module.exports = Post;
+module.exports = Post;
