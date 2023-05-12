@@ -19,7 +19,7 @@ Post.init(
         title: {
             type: DataTypes.STRING,
             allowNull: false,
-        }
+        },
         numComments: {
             type: DataTypes.INTEGER,
             defaultValue: 0,

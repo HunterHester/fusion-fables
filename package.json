@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "node server.js",
     "seed": "node seeds/seed.js",
-    "lint": "npx eslint **/*.js",
+    "lint": "eslint \"**/*.js\"",
     "watch": "nodemon server.js"
   },
   "repository": {
