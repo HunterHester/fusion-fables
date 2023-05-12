@@ -1,0 +1,32 @@
+[
+  {
+    "user_name": "Ryan",
+    "email": "ryan@gmail.com",
+    "password": "Password@1"
+  },
+  {
+    "user_name": "Chris",
+    "email": "chris@gmail.com",
+    "password": "Password@2"
+  },
+  {
+    "user_name": "Eric",
+    "email": "eric@gmail.com",
+    "password": "Password@3"
+  },
+  {
+    "user_name": "Elizabeth",
+    "email": "elizabeth@gmail.com",
+    "password": "Password@4"
+  },
+  {
+    "user_name": "Brian",
+    "email": "brian@gmail.com",
+    "password": "Password@5"
+  },
+  {
+    "user_name": "Hunter",
+    "email": "hunter@gmail.com",
+    "password": "Password@6"
+  }
+]

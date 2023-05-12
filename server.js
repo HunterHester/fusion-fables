@@ -30,7 +30,7 @@ app.use(session(sess));
 
 // create default handlebars engine, can pass in custom helpers
 const hbs = exphbs.create();
-;
+
 // handlebars configurations, inform express
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
