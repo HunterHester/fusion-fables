@@ -24,8 +24,7 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                // len: [8, 20],
-                is: ["^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[-\#\$\.\%\&\*])(?=.*[a-zA-Z]).{8,20}$, 'i'"]
+                is: ["^(?=.*?[0-9])(?=.*?[a-zA-Z])(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{8,20}$"]
             },
         },
         email: {
