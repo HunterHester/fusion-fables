@@ -17,25 +17,22 @@ Comment.init(
             primaryKey: true,
             autoIncrement: true,
         },
+        comment_body: {
+            type: DataTypes.TEXT,
+            allowNull: false,
+        },
         post_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: "post",
-                key: 'id'
-            }
+            allowNull: false,
         },
         user_id: {
             type: DataTypes.INTEGER,
-            references: {
-                model: "user",
-                key: 'id'
-            }
+            allowNull: false,
         },
 // This should create a timestamp?
         date: {
             type: DataTypes.DATE,
             allowNull: false,
-            createdAt,
         },
     },
     {
@@ -47,4 +44,4 @@ Comment.init(
         }
     );
     
-    module.exports = User;
+    module.exports = Comment;

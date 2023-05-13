@@ -15,35 +15,37 @@ Post.init(
             allowNull: false,
             primaryKey: true,
             autoIncrement: true,
-            },
+        },
         title: {
             type: DataTypes.STRING,
+            allowNull: false,
+        },
+        post_body: {
+            type: DataTypes.TEXT,
             allowNull: false,
         },
         // This should create a timestamp?
         date: {
             type: DataTypes.DATE,
             allowNull: false,
-            createdAt,
         },
         // time: {
         //     type: DataTypes.TIME,
         //     allowNull: false,
         // },
         user_id: {
-            type: DataTypes.STRING,
-            references: {
-                model: 'user',
-                key: 'id'
-            }
+            type: DataTypes.INTEGER,
+            allowNull: false,
         },
         is_public: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+            defaultValue: true,
         },
         allow_comments: {
             type: DataTypes.BOOLEAN,
             allowNull: false,
+            defaultValue: true,
         },
         numComments: {
             type: DataTypes.INTEGER,
