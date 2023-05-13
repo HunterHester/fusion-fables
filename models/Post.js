@@ -20,26 +20,34 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        numComments: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
-        },
+        // This should create a timestamp?
         date: {
             type: DataTypes.DATE,
             allowNull: false,
+            createdAt,
         },
-        time: {
-            type: DataTypes.TIME,
-            allowNull: false,
-        },
+        // time: {
+        //     type: DataTypes.TIME,
+        //     allowNull: false,
+        // },
         user_id: {
-
+            type: DataTypes.STRING,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         },
         is_public: {
-
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
         },
         allow_comments: {
-
+            type: DataTypes.BOOLEAN,
+            allowNull: false,
+        },
+        numComments: {
+            type: DataTypes.INTEGER,
+            defaultValue: 0,
         },
     },
     {
@@ -50,7 +58,7 @@ Post.init(
             },
             beforeUpdate: async (updatedBlogData) => {
             updatedBlogData.password = await bcrypt.hash(updatedBlogData.password, 10);
-            return updatedBlogDBlog
+            return updatedBlogDBlog;
             },
         },
         sequelize,
