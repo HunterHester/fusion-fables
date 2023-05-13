@@ -24,33 +24,19 @@ User.init(
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                len: [8],
+                // len: [8, 20],
+                is: ["^(?=.*\d)(?=.*[a-zA-Z])(?=.*[A-Z])(?=.*[-\#\$\.\%\&\*])(?=.*[a-zA-Z]).{8,20}$, 'i'"]
             },
         },
         email: {
             type: DataTypes.STRING,
             allowNull: false,
             validate: {
-                isEmail: true,   
+                isEmail: true,
             }
         }
     },
     {
-    hooks: {
-        beforeCreate: async (newBlogData) => {
-        newBlogData.password = await bcrypt.hash(newBlogData.password, 10);
-        newBlogData.email = await bcrypt.hash(newBlogData.email, 10);
-        return newBlogData;
-        },
-        beforeUpdate: async (updatedBlogData) => {
-        updatedBlogData.password = await bcrypt.hash(
-            updatedBlogData.password,
-            10
-        );
-        updatedBlogData.email = await bcrypt.hash(newBlogData.email, 10);
-        return updatedBlogDBlog;
-        },
-    },
     sequelize,
     timestamps: true,
     freezeTableName: true,

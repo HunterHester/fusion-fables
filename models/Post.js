@@ -20,20 +20,16 @@ Post.init(
             type: DataTypes.STRING,
             allowNull: false,
         },
-        numComments: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
-        },
         // This should create a timestamp?
         date: {
             type: DataTypes.DATE,
             allowNull: false,
             createdAt,
         },
-        time: {
-            type: DataTypes.TIME,
-            allowNull: false,
-        },
+        // time: {
+        //     type: DataTypes.TIME,
+        //     allowNull: false,
+        // },
         user_id: {
             type: DataTypes.STRING,
             references: {
