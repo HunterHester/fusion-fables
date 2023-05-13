@@ -41,6 +41,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // serve static files/import css with direct path
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/bootstrap', express.static(path.join(__dirname, '/node_modules/bootstrap/dist')));
 
 // connect to routes in 'controller' folder
 app.use(routes);
