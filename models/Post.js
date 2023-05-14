@@ -23,6 +23,7 @@ Post.init(
         post_body: {
             type: DataTypes.TEXT,
             allowNull: false,
+            defaultValue: '',
         },
         date_created: {
             type: DataTypes.DATE,
