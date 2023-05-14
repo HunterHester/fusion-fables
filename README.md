@@ -83,7 +83,7 @@ Chris McNamara: [Link to Github](https://github.com/cmcnamara15) Email: <a href=
 
 Hunter Hester: [Link to Github](https://github.com/HunterHester) Email: <a href="mailto:hunter.hester15@gmail.com">hunter.hester15@gmail.com</a>
 
-Brian Hamlin: [Link to Github](https://github.com/MisterBham) Email: <a href="mailto:misterbham.dev@gmail.com">Brian Hamlin</a>
+Brian Hamlin: [Link to Github](https://github.com/MisterBham) Email: <a href="mailto:misterbham.dev@gmail.com">misterbham.dev@gmail.com</a>
 
 Elizabeth Olsavsky: [Link to Github](https://github.com/elizabetholsavsky) Email: <a href="mailto:elizabetholsavsky@gmail.com">elizabetholsavsky@gmail.com</a>
 

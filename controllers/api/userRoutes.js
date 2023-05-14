@@ -2,6 +2,35 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 
+router.get('/', async (req, res) => {
+    try {
+        const userData = await User.findAll();
+    res.status(200).json(userData);
+    } catch (err) {
+    res.status(500).json(err);
+    }
+});
+
+router.get('/:id', async (req, res) => {
+// find one category by its `id` value
+    try {
+    const categoryData = await Category.findByPk(req.params.id, {
+      // be sure to include its associated Products
+        include: { model: Product },
+    });
+
+    if (!categoryData) {
+        res.status(404).json({ message: 'No category with this ID!' });
+        return;
+    }
+
+    res.status(200).json(categoryData);
+    } catch (err) {
+    res.status(500).json(err);
+    }
+});
+
+
 // create user post route
 router.post('/', async (req, res) => {
     try {
