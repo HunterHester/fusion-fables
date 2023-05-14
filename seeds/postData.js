@@ -1,6 +1,6 @@
 const { Post } = require('../models');
 
-const postData = () => [
+const postData = [
     {"id":1,"title":"Duis mattis egestas metus.","date":"9/20/2022","user_id":3,"is_public":true,"allow_comments":true,"numComments":124},
     {"id":2,"title":"Nulla nisl.","date":"10/28/2022","user_id":9,"is_public":true,"allow_comments":false,"numComments":21},
     {"id":3,"title":"Vivamus vestibulum sagittis sapien.","date":"1/19/2022","user_id":3,"is_public":true,"allow_comments":false,"numComments":22},

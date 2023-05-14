@@ -1,6 +1,6 @@
 const { Comment } = require('../models');
 
-const commentData = () => [
+const commentData = [
     {"id":1,"post_id":25,"user_id":7,"date":"7/3/2022"},
     {"id":2,"post_id":3,"user_id":7,"date":"12/1/2022"},
     {"id":3,"post_id":4,"user_id":2,"date":"2/19/2022"},
