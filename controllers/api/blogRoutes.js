@@ -16,7 +16,7 @@ router.get('/', async (req, res) => {
 });
 
 // get blog by id(render larger)
-router.get('/post/:id', async (req, res) => {
+router.get('/view/:id', async (req, res) => {
     try {
         const matchPost = await Post.findOne({
             where: {
@@ -31,11 +31,11 @@ router.get('/post/:id', async (req, res) => {
 });
 
 // post route
-router.post('/', async (req, res) => {
+router.post('/create', async (req, res) => {
     try {
         const newPost = await Post.create({
-            ...req.body,
-            user_id: req.session.user_id,
+            title: req.body.title,
+            post_body: req.body.post_body,
         });
 
         res.status(200).json(newPost);
