@@ -6,7 +6,7 @@ const { Post } = require('../../models');
 router.get('/', async (req, res) => {
     try {
         const existingPosts = await Post.findAll({
-            attributes: ['title', 'date']
+            attributes: ['title', 'date_created']
     });
         console.log('called')
         res.status(200).json(existingPosts);
