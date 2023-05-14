@@ -29,9 +29,10 @@ Comment.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-        date: {
+        date_created: {
             type: DataTypes.DATE,
-            defaultValue: new Date.now(),
+            allowNull: false,
+            defaultValue: DataTypes.NOW,
         },
     },
     {
