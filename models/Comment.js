@@ -29,10 +29,9 @@ Comment.init(
             type: DataTypes.INTEGER,
             allowNull: false,
         },
-// This should create a timestamp?
         date: {
             type: DataTypes.DATE,
-            allowNull: false,
+            defaultValue: new Date.now(),
         },
     },
     {

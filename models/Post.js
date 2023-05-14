@@ -24,15 +24,10 @@ Post.init(
             type: DataTypes.TEXT,
             allowNull: false,
         },
-        // This should create a timestamp?
         date: {
             type: DataTypes.DATE,
-            allowNull: false,
+            defaultValue: new Date.now(),
         },
-        // time: {
-        //     type: DataTypes.TIME,
-        //     allowNull: false,
-        // },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
