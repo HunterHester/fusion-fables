@@ -42,4 +42,14 @@ router.get('/create', async (req, res) => {
     }
 });
 
+// renders view post page view (needs auth) 
+// router.get('/view', async (req, res) => {
+//     try {
+//         res.render('view');
+//     } catch (err) {
+//         console.log(err);
+//         res.status(500).json(err);
+//     }
+// });
+
 module.exports = router;
