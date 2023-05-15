@@ -1,1 +1,22 @@
-<h2>This is the User Page</h2>
+<div class="container">
+    <div class="row">
+        <div class="text-center mx-auto pt-2">
+            <h1>User's name Blog</h1>
+        </div>
+    </div>
+    {{> post-card}}
+</div>
+
+<style>
+    .fixed-bottom {
+        position: fixed;
+        right: 0;
+        bottom: 0;
+        z-index: 999;
+    }
+</style>
+<div class="fixed-bottom d-flex justify-content-end pr-3 pb-3">
+  <a href="/create" class="btn btn-lg">
+    <i class="bi-plus-circle-fill" style="font-size: 3rem; color: #1DA1F2"></i>
+  </a>
+</div>
