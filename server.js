@@ -3,6 +3,7 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const path = require('path');
+const helpers = require('./utils/helpers');
 
 // import db connection
 const sequelize = require('./config/connection');
@@ -29,7 +30,7 @@ const sess = {
 app.use(session(sess));
 
 // create default handlebars engine, can pass in custom helpers
-const hbs = exphbs.create();
+const hbs = exphbs.create({ helpers });
 
 // handlebars configurations, inform express
 app.engine('handlebars', hbs.engine);
