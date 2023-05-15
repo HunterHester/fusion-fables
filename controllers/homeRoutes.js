@@ -76,4 +76,47 @@ router.get('/about', async (req, res) => {
 //     }
 // });
 
+// TEMPORARY LOCATION--belongs to blogRoutes
+router.get("/:id", async (req, res) => {
+    try {
+        const postData = await Post.findOne({
+            where: {
+                id: req.params.id,
+            },
+            attributes: ["id", "title", "post_body", "date_created"],
+            include: [
+                {
+                    model: Comment,
+                    attributes: [
+                        "id",
+                        "user_id",
+                        "comment_body",
+                        "date_created",
+                        "post_id"
+                    ],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
+                },
+                {
+                    model: User,
+                    attributes: ["username"],
+                },
+            ],
+        })
+        
+        if (!postData) {
+            res.status(404).json({ message: "No blog posts found" });
+            return;
+        }
+        const post = postData.get({ plain: true });
+        res.render("view", {
+            post
+        });
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    };
+});
 module.exports = router;

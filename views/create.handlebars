@@ -1,46 +1,40 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-10 mx-auto text-left">
-			<form>
+
+			<form id="createBlogPost">
 				{{!-- POST --}}
 				{{!-- title --}}
 				<div class="mt-5 mb-3">
-					<label for="createBlogPost" class="form-label">Title</label>
+					<label class="form-label">Title</label>
 					<input class="form-control" id="titleInput">
 				</div>
-
 				{{!-- body --}}
 				<div class="mb-3">
-					<label for="createBlogPost" class="form-label">Body</label>
-					<textarea class="form-control" id="bodyInput" rows="20"></textarea>
+					<label class="form-label">Body</label>
+					<textarea class="form-control" id="bodyInput" rows="10"></textarea>
 				</div>
-
 				{{!-- OPTIONS --}}
-				<div>
+				<div class="text-center">
 					{{!-- public --}}
 					<div class="form-switch form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault">
+						<input class="form-check-input" type="checkbox" role="switch" id="isPublicCheck">
 						<label class="form-check-label">Public</label>
 					</div>
-
 					{{!-- comments --}}
 					<div class="form-switch form-check form-check-inline">
-						<input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked">
+						<input class="form-check-input" type="checkbox" role="switch" id="allowCommentsCheck">
 						<label class="form-check-label" >Comments</label>
 					</div>
-
 					{{!-- submit Btn --}}
-					<div class="text-right">
-						<button type="submit" class="btn btn-primary">Submit</button>
+					<div class="text-center">
+						<button type="submit" class="text-center mt-3 btn btn-dark btn-lg btn-block">Submit</button>
 					</div>
 				</div>
 			</form>
+
 		</div>
 	</div>
 </div>
 
-
-
-
-
-
+<script src="/js/newPostHandler.js"></script>

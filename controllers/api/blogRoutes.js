@@ -1,6 +1,17 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../../models');
 
+// get all posts (JSON-tests)
+router.get("/all", async (req, res) => {
+    try {
+        const postData = await Post.findAll({
+        attributes: ["id", "title", "post_body", "created_at"]})
+        res.status(200).json(postData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 // get blog by id(render larger)
 router.get("/:id", async (req, res) => {
     try {
@@ -30,7 +41,7 @@ router.get("/:id", async (req, res) => {
                 },
             ],
         })
-
+        
         if (!postData) {
             res.status(404).json({ message: "No blog posts found" });
             return;
@@ -59,14 +70,16 @@ router.get('/', async (req, res) => {
 });
 
 // post route
-router.post('/create', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const newPost = await Post.create({
             title: req.body.title,
             post_body: req.body.post_body,
+            user_id: req.session.user_id
         });
 
         res.status(200).json(newPost);
+        console.log('Post created!');
     } catch (err) {
         res.status(400).json(err);
     }
