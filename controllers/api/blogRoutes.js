@@ -1,6 +1,49 @@
 const router = require('express').Router();
-const { Post } = require('../../models');
+const { Post, Comment, User } = require('../../models');
 
+// get blog by id(render larger)
+router.get("/:id", async (req, res) => {
+    try {
+        const postData = await Post.findOne({
+            where: {
+                id: req.params.id,
+            },
+            attributes: ["id", "title", "post_body", "date_created"],
+            include: [
+                {
+                    model: Comment,
+                    attributes: [
+                        "id",
+                        "user_id",
+                        "comment_body",
+                        "date_created",
+                        "post_id"
+                    ],
+                    include: {
+                        model: User,
+                        attributes: ["username"],
+                    },
+                },
+                {
+                    model: User,
+                    attributes: ["username"],
+                },
+            ],
+        })
+
+        if (!postData) {
+            res.status(404).json({ message: "No blog posts found" });
+            return;
+        }
+        const post = postData.get({ plain: true });
+        res.render("view", {
+            post
+        });
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    };
+});
 
 // get and render blog route
 router.get('/', async (req, res) => {
@@ -10,21 +53,6 @@ router.get('/', async (req, res) => {
     });
         console.log('called');
         res.status(200).json(existingPosts);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
-
-// get blog by id(render larger)
-router.get('/view/:id', async (req, res) => {
-    try {
-        const matchPost = await Post.findOne({
-            where: {
-                id: req.params.id,
-            }
-        });
-
-        res.status(200).json(matchPost);
     } catch (err) {
         res.status(400).json(err);
     }
