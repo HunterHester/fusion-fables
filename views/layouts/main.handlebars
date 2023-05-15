@@ -25,17 +25,26 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/userPage">My Blog</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/create">New Post</a>
+                </li>
             </ul>
             <ul class="navbar-nav ml-auto">
+                {{#if loggedIn}}
+                <li class="nav-item">
+                    <button class="btn btn-primary" id="logout">Logout</button>
+                </li>
+                {{else}}
                 <li class="nav-item">
                     <a class="nav-link text-primary" href="/login">Login</a>
                 </li>
+                {{/if}}
             </ul>
         </div>
     </nav>
-    {{{body}}}
-
     <script src="jquery/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="/js/logout.js"></script>
+    {{{body}}}
 </body>
 </html>
