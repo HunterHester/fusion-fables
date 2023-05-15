@@ -1,9 +1,27 @@
+{{!-- blog body --}}
 <div class="container">
 	<div class="row">
         <div class="col-md-10 mx-auto text-left mt-5">
-            <h1>{{post.title}}</h1>
-            <p>{{format_date post.date_created}}</p>
-            <p>{{post.post_body}}</p>
+            <h1>{{ post.title }}</h1>
+            <p>Written by <strong>{{ post.user.username }}</strong> on <strong>{{ format_date post.date_created }}</strong></p>
+            <p>{{ post.post_body }}</p>
         </div>
     </div>
 </div>
+
+{{!-- comment --}}
+{{#each comment as |comment|}}
+<div class="container">
+	<div class="row">
+        <div class="col-md-10 mx-auto text-left mt-3 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{comment.username}}A</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">{{comment.date_created}}B</h6>
+                    <p class="card-text">{{comment.comment_body}}C</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{/each}}
