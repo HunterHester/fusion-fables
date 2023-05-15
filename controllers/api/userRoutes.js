@@ -52,7 +52,7 @@ router.post('/', async (req, res) => {
 // log in post route
 router.post('/login', async (req, res) => {
     try {
-        const userData = await User.findOne({ where: { userName: req.body.userName } });
+        const userData = await User.findOne({ where: { userName: req.body.username } });
 
         if(!userData) {
             res.status(400).json({ message: 'Incorrect login information, please try again' });

@@ -54,22 +54,12 @@ Post.init(
         },
     },
     {
-        hooks: {
-            beforeCreate: async (newBlogData) => {
-            newBlogData.password = await bcrypt.hash(newBlogData.password, 10);
-            return newBlogData;
-            },
-            beforeUpdate: async (updatedBlogData) => {
-            updatedBlogData.password = await bcrypt.hash(updatedBlogData.password, 10);
-            return updatedBlogDBlog;
-            },
-        },
         sequelize,
         timestamps: true,
         freezeTableName: true,
         underscored: true,
         modelName: 'post',
-        }
-    );
+    }
+);
     
 module.exports = Post;

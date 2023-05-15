@@ -5,7 +5,9 @@ const { Comment, Post, User } = require('../models');
 // get route, redirect user to blog if already signed in
 router.get('/', async (req, res) => {
     try {
-        res.render('home');
+        res.render('home', {
+            loggedIn: req.session.logged_in,
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -15,7 +17,11 @@ router.get('/', async (req, res) => {
 // get route, redirect user to login page
 router.get('/login', async (req, res) => {
     try {
-        res.render("login");
+        if (req.session.logged_in) {
+            res.redirect('/');
+            return;
+        }
+        res.render('login');
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -25,7 +31,9 @@ router.get('/login', async (req, res) => {
 // get route, redirect user to their personal user page
 router.get('/userPage', async (req, res) => {
     try{
-        res.render("userPage");
+        res.render("userPage", {
+            loggedIn: req.session.logged_in,
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
@@ -35,12 +43,28 @@ router.get('/userPage', async (req, res) => {
 // renders create new post page view (needs auth)
 router.get('/create', async (req, res) => {
     try {
-        res.render('create');
+        if (req.session.logged_in) {
+            res.render('create', {
+                loggedIn: req.session.logged_in,
+            });
+            return;
+        } else {
+            res.render('login');
+        }
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
     }
 });
+
+router.get('/about', async (req, res) => {
+    try{
+        res.render('about');
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+})
 
 // renders view post page view (needs auth) 
 // router.get('/view', async (req, res) => {

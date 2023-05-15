@@ -8,7 +8,7 @@ router.get('/', async (req, res) => {
         const existingPosts = await Post.findAll({
             attributes: ['title', 'date_created']
     });
-        console.log('called')
+        console.log('called');
         res.status(200).json(existingPosts);
     } catch (err) {
         res.status(400).json(err);
