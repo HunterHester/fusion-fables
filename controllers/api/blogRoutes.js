@@ -47,9 +47,6 @@ router.get("/:id", async (req, res) => {
     try {
         if (isNaN(req.params.id)) {
             const postData = await Post.findAll({
-                where: {
-                    username: req.params.id,
-                },
                 include: [{
                     model: User,
                     attributes: { exclude: ['password', 'email'] },
@@ -63,7 +60,8 @@ router.get("/:id", async (req, res) => {
                 }],
                 order: [['updated_at', 'DESC']]
             })
-            res.status(200).json(postData);
+            userPosts = postData.filter((p) => p.user.username === req.params.id);
+            res.status(200).json(userPosts);
             return;
         } else {
             const postData = await Post.findAll({
@@ -90,8 +88,10 @@ router.get("/:id", async (req, res) => {
     }
 });
 
+// UPDATE Post
 
-// delete route
+
+// DELETE Post
 router.delete('/:id', async (req, res) => {
     try {
         const postData = await Post.destroy({
