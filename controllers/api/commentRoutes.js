@@ -14,13 +14,13 @@ router.get('/', async (req, res) => {
 // create comment (req from createComment.js in comment-form partial)
 router.post('/', async (req, res) => {
     try {
-    const comments = await Comment.create({
+    const comment = await Comment.create({
         comment_body: req.body.comment_body,
         post_id: req.body.post_id,
         user_id: req.session.user_id,
     });
     
-    res.status(200).json(commentData);
+    res.status(200).json(comment);
 
     } catch (err) {
         res.status(400).json(err);

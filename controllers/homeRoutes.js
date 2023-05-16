@@ -87,21 +87,21 @@ router.get("/:id", async (req, res) => {
             include: [
                 {
                     model: Comment,
-                    attributes: [
-                        "id",
-                        "user_id",
-                        "comment_body",
-                        "date_created",
-                        "post_id"
-                    ],
+                    // attributes: [
+                    //     "id",
+                    //     "user_id",
+                    //     "comment_body",
+                    //     "date_created",
+                    //     "post_id"
+                    // ],
                     include: {
                         model: User,
-                        attributes: ["username"],
+                        // attributes: ["username"],
                     },
                 },
                 {
                     model: User,
-                    attributes: ["username"],
+                    // attributes: ["username"],
                 },
             ],
         })
@@ -110,7 +110,9 @@ router.get("/:id", async (req, res) => {
             res.status(404).json({ message: "No blog posts found" });
             return;
         }
+        console.log(postData);
         const post = postData.get({ plain: true });
+        console.log(post);
         res.render("view", {
             post
         });
