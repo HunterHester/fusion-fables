@@ -1,31 +1,7 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../../models');
 
-// get all posts (JSON-tests)
-router.get("/all", async (req, res) => {
-    try {
-        const postData = await Post.findAll({
-        attributes: ["id", "title", "post_body", "created_at", "is_public", "allow_comments"]})
-        res.status(200).json(postData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-// get and render blog route
-router.get('/', async (req, res) => {
-    try {
-        const existingPosts = await Post.findAll({
-            attributes: ['title', 'date_created']
-    });
-        console.log('called');
-        res.status(200).json(existingPosts);
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
-
-// post route
+// CREATE Post
 router.post('/', async (req, res) => {
     try {
         const newPost = await Post.create({
@@ -33,7 +9,7 @@ router.post('/', async (req, res) => {
             post_body: req.body.post_body,
             is_public: req.body.is_public,
             allow_comments: req.body.allow_comments,
-            user_id: req.session.user_id
+            user_id: req.session.user_id || req.body.user_id
         });
         console.log(newPost);
         res.status(200).json(newPost);
@@ -42,6 +18,78 @@ router.post('/', async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+// READ all posts (JSON-tests)
+router.get("/", async (req, res) => {
+    try {
+        const postData = await Post.findAll({
+            include: [{
+                model: User,
+                attributes: { exclude: ['password', 'email'] },
+            }, 
+            {
+                model: Comment,
+                include: {
+                    model: User,
+                    attributes: ['username'],
+                }
+            }],
+            order: [['updated_at', 'DESC']]
+        })
+        res.status(200).json(postData);
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+// READ Posts by ID/Username
+router.get("/:id", async (req, res) => {
+    try {
+        if (isNaN(req.params.id)) {
+            const postData = await Post.findAll({
+                where: {
+                    username: req.params.id,
+                },
+                include: [{
+                    model: User,
+                    attributes: { exclude: ['password', 'email'] },
+                }, 
+                {
+                    model: Comment,
+                    include: {
+                        model: User,
+                        attributes: ['username'],
+                    }
+                }],
+                order: [['updated_at', 'DESC']]
+            })
+            res.status(200).json(postData);
+            return;
+        } else {
+            const postData = await Post.findAll({
+                where: {
+                    id: req.params.id,
+                },
+                include: [{
+                    model: User,
+                    attributes: { exclude: ['password', 'email'] },
+                }, 
+                {
+                    model: Comment,
+                    include: {
+                        model: User,
+                        attributes: ['username'],
+                    }
+                }],
+                order: [['updated_at', 'DESC']]
+            })
+            res.status(200).json(postData);
+        }
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
 
 // delete route
 router.delete('/:id', async (req, res) => {

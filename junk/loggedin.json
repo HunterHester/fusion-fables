@@ -1,0 +1,140 @@
+[
+    {
+        "id": 1,
+        "title": "hello world",
+        "post_body": "when was the first time you surprised yourself by fixing something?",
+        "user_id": 1,
+        "is_public": true,
+        "allow_comments": true,
+        "createdAt": "2023-05-16T03:55:14.000Z",
+        "updatedAt": "2023-05-16T03:55:14.000Z",
+        "user": {
+            "username": "bsmith2"
+        },
+        "comments": [
+            {
+                "id": 6,
+                "comment_body": "Agreed!",
+                "post_id": 1,
+                "user_id": 2,
+                "createdAt": "2023-05-16T03:55:14.000Z",
+                "updatedAt": "2023-05-16T03:55:14.000Z",
+                "user": {
+                    "username": "okarpeev4"
+                }
+            },
+            {
+                "id": 5,
+                "comment_body": "uhhhhhhh",
+                "post_id": 1,
+                "user_id": 9,
+                "createdAt": "2023-05-16T03:55:14.000Z",
+                "updatedAt": "2023-05-16T03:55:14.000Z",
+                "user": {
+                    "username": "jlearoid8"
+                }
+            },
+            {
+                "id": 4,
+                "comment_body": "How did I get here?",
+                "post_id": 1,
+                "user_id": 5,
+                "createdAt": "2023-05-16T03:55:14.000Z",
+                "updatedAt": "2023-05-16T03:55:14.000Z",
+                "user": {
+                    "username": "modlin6"
+                }
+            },
+            {
+                "id": 3,
+                "comment_body": "I fully agree",
+                "post_id": 1,
+                "user_id": 6,
+                "createdAt": "2023-05-16T03:55:14.000Z",
+                "updatedAt": "2023-05-16T03:55:14.000Z",
+                "user": {
+                    "username": "scullinan1"
+                }
+            },
+            {
+                "id": 1,
+                "comment_body": "Haha, that is so truthful!",
+                "post_id": 1,
+                "user_id": 1,
+                "createdAt": "2023-05-16T03:55:14.000Z",
+                "updatedAt": "2023-05-16T03:55:14.000Z",
+                "user": {
+                    "username": "bsmith2"
+                }
+            }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "goodbye world",
+        "post_body": "that was sad",
+        "user_id": 4,
+        "is_public": true,
+        "allow_comments": false,
+        "createdAt": "2023-05-16T03:55:14.000Z",
+        "updatedAt": "2023-05-16T03:55:14.000Z",
+        "user": {
+            "username": "btweedle3"
+        },
+        "comments": []
+    },
+    {
+        "id": 3,
+        "title": "what are you doing",
+        "post_body": "my daughters yelling",
+        "user_id": 6,
+        "is_public": true,
+        "allow_comments": true,
+        "createdAt": "2023-05-16T03:55:14.000Z",
+        "updatedAt": "2023-05-16T03:55:14.000Z",
+        "user": {
+            "username": "scullinan1"
+        },
+        "comments": [
+            {
+                "id": 2,
+                "comment_body": "I do not agree!",
+                "post_id": 3,
+                "user_id": 7,
+                "createdAt": "2023-05-16T03:55:14.000Z",
+                "updatedAt": "2023-05-16T03:55:14.000Z",
+                "user": {
+                    "username": "vpietrzyk7"
+                }
+            }
+        ]
+    },
+    {
+        "id": 4,
+        "title": "asdlfkjasdf",
+        "post_body": "asdfasdfasdfsadfasdfasdf",
+        "user_id": 9,
+        "is_public": true,
+        "allow_comments": false,
+        "createdAt": "2023-05-16T03:55:14.000Z",
+        "updatedAt": "2023-05-16T03:55:14.000Z",
+        "user": {
+            "username": "jlearoid8"
+        },
+        "comments": []
+    },
+    {
+        "id": 5,
+        "title": "pajksdfas",
+        "post_body": "wfghjfghjfghjfgjgfhj",
+        "user_id": 3,
+        "is_public": true,
+        "allow_comments": true,
+        "createdAt": "2023-05-16T03:55:14.000Z",
+        "updatedAt": "2023-05-16T03:55:14.000Z",
+        "user": {
+            "username": "hshakespear5"
+        },
+        "comments": []
+    }
+]
