@@ -1,37 +1,8 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User, Post, Comment } = require('../../models');
 
 
-router.get('/', async (req, res) => {
-    try {
-        const userData = await User.findAll();
-    res.status(200).json(userData);
-    } catch (err) {
-    res.status(500).json(err);
-    }
-});
-
-router.get('/:id', async (req, res) => {
-// find one category by its `id` value
-    try {
-    const categoryData = await Category.findByPk(req.params.id, {
-      // be sure to include its associated Products
-        include: { model: Product },
-    });
-
-    if (!categoryData) {
-        res.status(404).json({ message: 'No category with this ID!' });
-        return;
-    }
-
-    res.status(200).json(categoryData);
-    } catch (err) {
-    res.status(500).json(err);
-    }
-});
-
-
-// create user post route
+// CREATE User
 router.post('/', async (req, res) => {
     try {
         const userData = await User.create(req.body); 
@@ -47,6 +18,115 @@ router.post('/', async (req, res) => {
         res.status(400).json(err);
     }
 });
+
+
+// READ all users
+router.get('/', async (req, res) => {
+    try {
+        const userData = await User.findAll({
+        });
+        res.status(200).json(userData);
+    } catch (err) {
+    res.status(500).json(err);
+    }
+});
+
+
+// READ one user by ID OR Username
+router.get('/:id', async (req, res) => {
+    try {
+        if(isNaN(req.params.id)) {
+            const userData = await User.findOne({
+                where: {
+                    username: req.params.id,
+                },
+                include: {
+                    model: Post,
+                    include: {
+                        model: Comment,
+                        include: {
+                            model: User,
+                            attributes: ['username'],
+                        }
+                    }
+                },
+                attributes: { exclude: ['password', 'email'] }
+            });
+
+            if (!userData) {
+                res.status(404).json({ message: 'No user with this ID!' });
+                return;
+            }
+
+            res.status(200).json(userData);
+        } else {
+            const userData = await User.findByPk(req.params.id, {
+                include: {
+                    model: Post,
+                    include: {
+                        model: Comment,
+                        include: {
+                            model: User,
+                            attributes: ['username'],
+                        },
+                        order: [['updated_at', 'DESC']]
+                    },
+                    order: [['updated_at', 'DESC']]
+                },
+                attributes: { exclude: ['password', 'email'] }
+            });
+
+            if (!userData) {
+                res.status(404).json({ message: 'No user with this ID!' });
+                return;
+            }
+
+            res.status(200).json(userData);
+        }
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
+
+
+// UPDATE User
+router.put('/:id', async (req, res) => {
+    try {
+      const userData = await User.update(req.body, {
+        where: {
+          id: req.params.id,
+        },
+        individualHooks: true
+      });
+      if (!userData[0]) {
+        res.status(404).json({ message: 'No user with this id!' });
+        return;
+      }
+      res.status(200).json(userData);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+});
+
+
+// DELETE User
+router.delete('/:id', async (req, res) => {
+    try {
+      const deletedUser = await User.destroy({
+        where: {
+          id: req.params.id,
+        },
+      });
+      if(!deletedUser) {
+        res.status(404).json({ message: 'No user found with that id!' });
+        return;
+      }
+      res.status(200).json(deletedUser);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  });
 
 
 // log in post route
