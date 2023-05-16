@@ -5,7 +5,7 @@ const { Post, Comment, User } = require('../../models');
 router.get("/all", async (req, res) => {
     try {
         const postData = await Post.findAll({
-        attributes: ["id", "title", "post_body", "created_at"]})
+        attributes: ["id", "title", "post_body", "created_at", "is_public", "allow_comments"]})
         res.status(200).json(postData);
     } catch (err) {
         res.status(500).json(err);
@@ -31,6 +31,8 @@ router.post('/', async (req, res) => {
         const newPost = await Post.create({
             title: req.body.title,
             post_body: req.body.post_body,
+            is_public: req.body.is_public,
+            allow_comments: req.body.allow_comments,
             user_id: req.session.user_id
         });
         console.log(newPost);
