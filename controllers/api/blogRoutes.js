@@ -42,53 +42,50 @@ router.get("/", async (req, res) => {
     }
 });
 
-// READ Posts by ID/Username
+// READ Posts by ID
 router.get("/:id", async (req, res) => {
     try {
-        if (isNaN(req.params.id)) {
-            const postData = await Post.findAll({
-                include: [{
+        const postData = await Post.findAll({
+            where: {
+                id: req.params.id,
+            },
+            include: [{
+                model: User,
+                attributes: { exclude: ['password', 'email'] },
+            }, 
+            {
+                model: Comment,
+                include: {
                     model: User,
-                    attributes: { exclude: ['password', 'email'] },
-                }, 
-                {
-                    model: Comment,
-                    include: {
-                        model: User,
-                        attributes: ['username'],
-                    }
-                }],
-                order: [['updated_at', 'DESC']]
-            })
-            userPosts = postData.filter((p) => p.user.username === req.params.id);
-            res.status(200).json(userPosts);
-            return;
-        } else {
-            const postData = await Post.findAll({
-                where: {
-                    id: req.params.id,
-                },
-                include: [{
-                    model: User,
-                    attributes: { exclude: ['password', 'email'] },
-                }, 
-                {
-                    model: Comment,
-                    include: {
-                        model: User,
-                        attributes: ['username'],
-                    }
-                }],
-                order: [['updated_at', 'DESC']]
-            })
-            res.status(200).json(postData);
-        }
+                    attributes: ['username'],
+                }
+            }],
+            order: [['updated_at', 'DESC']]
+        })
+        res.status(200).json(postData);
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-// UPDATE Post
+// Update Post
+router.put('/:id', async (req, res) => {
+    try {
+        const updatedPost = await Post.update(req.body, {
+            where: {
+                id: req.params.id
+            }
+        });
+        if (!updatedPost[0]) {
+            res.status(400).json({ message: "No post found with that id!" });
+        }
+        res.status(200).json(updatedPost.get({ plain: true }));
+        console.log('Post updated!');
+    } catch (err) {
+        console.error(err);
+        res.status(500).json(err);
+    }
+});
 
 
 // DELETE Post
@@ -102,7 +99,7 @@ router.delete('/:id', async (req, res) => {
         });
     
     if (!postData) {
-        res.status(404).json({ message: "No post with this ID"});
+        res.status(404).json({ message: "No post with that id!"});
         return;
     }
 
