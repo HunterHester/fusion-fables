@@ -25,11 +25,6 @@ Post.init(
             allowNull: false,
             defaultValue: '',
         },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
@@ -47,10 +42,6 @@ Post.init(
             type: DataTypes.BOOLEAN,
             allowNull: false,
             defaultValue: true,
-        },
-        numComments: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
         },
     },
     {
