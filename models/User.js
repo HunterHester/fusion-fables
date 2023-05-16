@@ -33,13 +33,35 @@ User.init(
             validate: {
                 isEmail: true,
             }
-        }
+        },
+        // created_at: {
+        //     type: DataTypes.DATE,              
+        //     get() {
+        //         return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY h:mm:ss');
+        //     }
+        // },
+        // updatedAt: {
+        //     type: DataTypes.DATE,
+        //     get() {
+        //         return moment(this.getDataValue('updatedAt')).format('DD/MM/YYYY h:mm:ss');
+        //     }
+        // }
     },
     {
         hooks: {
-            async beforeCreate(newUserData) {
+            beforeCreate: async (newUserData) => {
                 newUserData.password = await bcrypt.hash(newUserData.password, 10);
+                newUserData.email = await bcrypt.hash(newUserData.email, 10);
                 return newUserData;
+            },
+            beforeUpdate: async (updatedUserData) => {
+                if (updatedUserData.password) {
+                updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
+                }
+                if (updatedUserData.email) {
+                    updatedUserData.email = await bcrypt.hash(updatedUserData.email, 10);
+                }
+                return updatedUserData;
             },
         },
         sequelize,

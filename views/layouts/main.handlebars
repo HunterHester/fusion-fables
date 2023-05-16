@@ -37,7 +37,7 @@
                 </li>
                 {{else}}
                 <li class="nav-item">
-                    <a class="nav-link text-primary" href="/login">Login</a>
+                    <a class="text-white" href="/login"><button class="btn btn-primary" id="logout">Login</button></a>
                 </li>
                 {{/if}}
             </ul>
@@ -45,7 +45,9 @@
     </nav>
     <script src="jquery/jquery.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src="/js/logout.js"></script>
+    {{#if loggedIn}}
+        <script src="/js/logout.js"></script>
+    {{/if}}
     {{{body}}}
 </body>
 </html>

@@ -1,1 +1,23 @@
-<h2>Welcome to the Home Page!</h2>
+<div class="container">
+    <div class="row">
+        <div class="text-center mx-auto pt-2">
+            <h1>Blog Post Feed</h1>
+        </div>
+    </div>
+    {{#each posts as |post|}}
+        {{!-- {{> post-card}} --}}
+        <div class="row">
+            <div class="col mx-auto pt-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>{{post.title}}</h5>
+                        <p>Post by {{post.user.username}}<br>{{format_date post.createdAt}}</p>
+                    </div>
+                    <div class="card-body">
+                        {{post.post_body}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

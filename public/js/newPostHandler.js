@@ -4,7 +4,7 @@ async function newPostHandler(event) {
     const titleInput = document.getElementById('titleInput').value.trim();
     const bodyInput = document.getElementById('bodyInput').value.trim();
 
-    const response = await fetch(`/api/blog`, {
+    const response = await fetch(`/api/post/`, {
         method: 'POST',
         body: JSON.stringify({
             titleInput,

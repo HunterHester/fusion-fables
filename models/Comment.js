@@ -37,11 +37,18 @@ Comment.init(
                 key: 'id',
             },
         },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
-        },
+        // created_at: {
+        //     type: DataTypes.DATE,              
+        //     get() {
+        //         return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY h:mm:ss');
+        //     }
+        // },
+        // updatedAt: {
+        //     type: DataTypes.DATE,
+        //     get() {
+        //         return moment(this.getDataValue('updatedAt')).format('DD/MM/YYYY h:mm:ss');
+        //     }
+        // }
     },
     {
         sequelize,

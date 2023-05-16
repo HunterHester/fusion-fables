@@ -1,109 +1,59 @@
 const router = require('express').Router();
 const { Post, Comment, User } = require('../../models');
 
-// get all posts (JSON-tests)
-router.get("/all", async (req, res) => {
+
+// Get all Posts excluding Username
+router.get('/feed', async (req, res) => {
     try {
         const postData = await Post.findAll({
-        attributes: ["id", "title", "post_body", "created_at"]})
-        res.status(200).json(postData);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-});
-
-// get blog by id(render larger)
-router.get("/:id", async (req, res) => {
-    try {
-        const postData = await Post.findOne({
-            where: {
-                id: req.params.id,
-            },
-            attributes: ["id", "title", "post_body", "date_created"],
             include: [
                 {
-                    model: Comment,
-                    attributes: [
-                        "id",
-                        "user_id",
-                        "comment_body",
-                        "date_created",
-                        "post_id"
-                    ],
-                    include: {
-                        model: User,
-                        attributes: ["username"],
-                    },
+                    model: User,
+                    attributes: ['username']
                 },
                 {
-                    model: User,
-                    attributes: ["username"],
+                    model: Comment,
+                    include: {
+                        model: User, 
+                        attributes: ['username']
+                    },
                 },
             ],
-        })
-        
-        if (!postData) {
-            res.status(404).json({ message: "No blog posts found" });
-            return;
-        }
-        const post = postData.get({ plain: true });
-        res.render("view", {
-            post
+            
         });
-    } catch(err) {
-        console.log(err);
+        posts = postData.filter((post) => post.user.id != req.session.user_id);
+        res.status(200).json(posts);
+    } catch (err) {
+        console.log(err)
         res.status(500).json(err);
-    };
-});
-
-// get and render blog route
-router.get('/', async (req, res) => {
-    try {
-        const existingPosts = await Post.findAll({
-            attributes: ['title', 'date_created']
-    });
-        console.log('called');
-        res.status(200).json(existingPosts);
-    } catch (err) {
-        res.status(400).json(err);
     }
 });
 
-// post route
-router.post('/', async (req, res) => {
-    try {
-        const newPost = await Post.create({
-            title: req.body.title,
-            post_body: req.body.post_body,
-            user_id: req.session.user_id
-        });
 
-        res.status(200).json(newPost);
-        console.log('Post created!');
-    } catch (err) {
-        res.status(400).json(err);
-    }
-});
-
-// delete route
-router.delete('/:id', async (req, res) => {
+// Get all Posts by Username
+router.get('/:username', async (req, res) => {
     try {
-        const postData = await Post.destroy({
+        const user = await User.findOne({
             where: {
-                id:req.params.id,
-                user_id: req.session.user_id,
-            },
+                username: req.params.username,
+            }, include: [
+                {
+                    model: Post,
+                    include: {
+                        model: Comment,
+                        include: {
+                            model: User,
+                        },
+                    },
+                },
+            ],
         });
-    
-    if (!postData) {
-        res.status(404).json({ message: "No post with this ID"});
-        return;
-    }
-
-    res.status(200).json(postData);
+        const posts = user.posts.map((p) => p.get({ plain: true }));
+        res.status(200).json(posts)
     } catch (err) {
-        res.status(500).json(err);
-    } 
+        console.error(err);
+        res.status(500).json({ message: 'Server Error' })
+    }
 });
 
 module.exports = router;

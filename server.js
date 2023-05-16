@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const { clog } = require('./middleware/clog');
 const routes = require('./controllers');
 const path = require('path');
 const helpers = require('./utils/helpers');
@@ -39,6 +40,7 @@ app.set('view engine', 'handlebars');
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(clog);
 
 // serve static files/import css with direct path
 app.use(express.static(path.join(__dirname, 'public')));

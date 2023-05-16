@@ -23,12 +23,6 @@ Post.init(
         post_body: {
             type: DataTypes.TEXT,
             allowNull: false,
-            defaultValue: '',
-        },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -48,10 +42,18 @@ Post.init(
             allowNull: false,
             defaultValue: true,
         },
-        numComments: {
-            type: DataTypes.INTEGER,
-            defaultValue: 0,
-        },
+        // created_at: {
+        //     type: DataTypes.DATE,              
+        //     get() {
+        //         return moment(this.getDataValue('createdAt')).format('DD/MM/YYYY h:mm:ss');
+        //     }
+        // },
+        // updatedAt: {
+        //     type: DataTypes.DATE,
+        //     get() {
+        //         return moment(this.getDataValue('updatedAt')).format('DD/MM/YYYY h:mm:ss');
+        //     }
+        // }
     },
     {
         sequelize,
