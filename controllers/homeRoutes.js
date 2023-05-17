@@ -1,6 +1,6 @@
 const router = require('express').Router();
 const { Comment, Post, User } = require('../models');
-
+const withAuth = require('../utils/auth');
 
 // get route, redirect user to blog if already signed in
 router.get('/', async (req, res) => {
@@ -99,34 +99,21 @@ router.get('/about', async (req, res) => {
 //     }
 // });
 
-// TEMPORARY LOCATION--belongs to blogRoutes
-router.get("/post/:id", async (req, res) => {
+router.get("/:id", async (req, res) => {
     try {
-        const postData = await Post.findOne({
-            where: {
-                id: req.params.id,
-            },
-            attributes: ["id", "title", "post_body", "date_created"],
-            include: [
-                {
-                    model: Comment,
-                    // attributes: [
-                    //     "id",
-                    //     "user_id",
-                    //     "comment_body",
-                    //     "date_created",
-                    //     "post_id"
-                    // ],
-                    include: {
-                        model: User,
-                        // attributes: ["username"],
-                    },
-                },
-                {
+        const postData = await Post.findByPk( req.params.id, {
+            include: [{
+                model: User,
+                attributes: { exclude: ['password', 'email'] },
+            }, 
+            {
+                model: Comment,
+                include: {
                     model: User,
-                    // attributes: ["username"],
-                },
-            ],
+                    attributes: ['username'],
+                },            
+                order: [['updated_at', 'DESC']]
+            }],
         })
         
         if (!postData) {
@@ -137,7 +124,8 @@ router.get("/post/:id", async (req, res) => {
         const post = postData.get({ plain: true });
         console.log(post);
         res.render("view", {
-            post
+            post,
+            loggedIn: req.session.logged_in
         });
     } catch(err) {
         console.log(err);
