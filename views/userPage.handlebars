@@ -1,10 +1,12 @@
 <div class="container">
     <div class="row">
         <div class="text-center mx-auto pt-2">
-            <h1>User's name Blog</h1>
+            <h1>{{user.username}}'s Blog</h1>
         </div>
     </div>
-    {{> post-card}}
+    {{#each posts}}
+        {{> post-card}}
+    {{/each}}
 </div>
 
 <style>
