@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+const handlbars = require('handlebars');
 const routes = require('./controllers');
 const path = require('path');
 const helpers = require('./utils/helpers');
@@ -30,7 +31,7 @@ const sess = {
 app.use(session(sess));
 
 // create default handlebars engine, can pass in custom helpers
-const hbs = exphbs.create({ helpers });
+const hbs = exphbs.create();
 
 // handlebars configurations, inform express
 app.engine('handlebars', hbs.engine);

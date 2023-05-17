@@ -31,8 +31,31 @@ router.get('/login', async (req, res) => {
 // get route, redirect user to their personal user page
 router.get('/userPage', async (req, res) => {
     try{
+        const userData = await User.findByPk(req.session.user_id, {
+            include: {
+                model: Post,
+                include: {
+                    model: Comment,
+                    include: {
+                        model: User,
+                        attributes: ['username'],
+                    },
+                    order: [['updated_at', 'DESC']]
+                },
+                order: [['updated_at', 'DESC']]
+            },
+            attributes: { exclude: ['password', 'email'] }
+        });
+
+        if (!userData) {
+            res.redirect('/login');
+            return;
+        }
+
         res.render("userPage", {
             loggedIn: req.session.logged_in,
+            user: userData.get({ plain: true }),
+            posts: userData.posts.map((p) => p.get({ plain: true }))
         });
     } catch (err) {
         console.log(err);
@@ -77,7 +100,7 @@ router.get('/about', async (req, res) => {
 // });
 
 // TEMPORARY LOCATION--belongs to blogRoutes
-router.get("/:id", async (req, res) => {
+router.get("/post/:id", async (req, res) => {
     try {
         const postData = await Post.findOne({
             where: {
