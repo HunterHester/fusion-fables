@@ -2,9 +2,9 @@
 <div class="container">
 	<div class="row">
         <div class="col-md-10 mx-auto text-left mt-5">
-            <h1>{{ this.title }}</h1>
-            <p>Written by <strong>{{ this.user.username }}</strong> on <strong>{{ format_date post.created_at }}</strong></p>
-            <p>{{ this.post_body }}</p>
+            <h1>{{ post.title }}</h1>
+            <p>Written by <strong>{{ post.user.username }}</strong> on <strong>{{ format_date post.createdAt }}</strong></p>
+            <p>{{ post.post_body }}</p>
         </div>
     </div>
 </div>
@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">{{comment.user.username}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{format_date comment.created_at}}</h6>
+                    <h6 class="card-subtitle mb-2 text-muted">{{ format_date comment.createdAt}}</h6>
                     <p class="card-text">{{comment.comment_body}}</p>
                 </div>
             </div>
