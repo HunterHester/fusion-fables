@@ -4,8 +4,8 @@
             <div class="card text-dark shadow">
                 <div class="card-header">
                     <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-primary" id="delete-btn" type="button" style="float: right; margin: 4px">Delete</button>
-                        <button class="btn btn-primary" id="edit-btn" type="button" style="float: right; margin: 4px">Edit</button>
+                        <button class="btn btn-primary delete-btn" type="button" style="float: right; margin: 4px">Delete</button>
+                        <button class="btn btn-primary edit-btn" type="button" style="float: right; margin: 4px">Edit</button>
                     </div>
                     <h3>{{this.title}}</h3>
                     <p>Created {{format_date this.createdAt}}</p>
@@ -30,3 +30,5 @@
   }
 
 </style>
+
+<script src="/public/js/editDeleteUserPage.js"></script>
