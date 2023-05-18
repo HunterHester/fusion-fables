@@ -8,10 +8,11 @@ const commentRoutes = require('./commentRoutes');
 // blog and user routes
 
 
-router.use('/', homeRoutes);
+
 router.use('/u', userRoutes);
 // router.use('/b', blogRoutes);
 // router.use('/c', commentRoutes);
 router.use('/api', apiRoutes);
+router.use('/', homeRoutes);
 
 module.exports = router;

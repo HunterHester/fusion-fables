@@ -1,12 +1,28 @@
 <div class="row">
     <div class="col-md-6 mx-auto pt-4">
-        <div class="card">
-            <div class="card-header">
-                {{this.title}}
+        <a href="/{{this.id}}" class="card-link">
+            <div class="card text-dark shadow">
+                <div class="card-header">
+                    <h3>{{this.title}}</h3>
+                    <p>Created {{format_date this.createdAt}}</p>
+                </div>
+                <div class="card-body text-truncate">
+                    {{this.post_body}}
+                </div>
+
+                <div class="card-footer">
+                    <span>{{num_of_comments this.comments}}</span>
+                </div>
             </div>
-            <div class="card-body">
-                {{this.post_body}}
-            </div>
-        </div>
+        </a>
     </div>
 </div>
+
+<style>
+  .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+  }
+
+</style>

@@ -28,8 +28,10 @@ router.get('/:id', async (req, res) => {
             }
 
             res.render('userPage', {
-                user: userData,
-                posts: userData.posts
+                user: userData.get({ plain: true }),
+                posts: userData.posts.map((p) => p.get({ plain: true })),
+                loggedIn: req.session.logged_in
+
             });
         } else {
             const userData = await User.findByPk(req.params.id, {
@@ -56,8 +58,8 @@ router.get('/:id', async (req, res) => {
             console.log()
 
             res.render('userPage', {
-                user: userData,
-                posts: userData.posts,
+                user: userData.get({ plain: true }),
+                posts: userData.posts.map((p) => p.get({ plain: true })),
                 loggedIn: req.session.logged_in
             });
         }
