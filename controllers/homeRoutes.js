@@ -5,8 +5,24 @@ const withAuth = require('../utils/auth');
 // get route, redirect user to blog if already signed in
 router.get('/', async (req, res) => {
     try {
+        const postData = await Post.findAll({
+            include: [{
+                model: User,
+                attributes: { exclude: ['password', 'email'] },
+            }, 
+            {
+                model: Comment,
+                include: {
+                    model: User,
+                    attributes: ['username'],
+                }
+            }],
+            order: [['updated_at', 'DESC']]
+        });
         res.render('home', {
-            loggedIn: req.session.logged_in,
+            posts: postData.map((p) => p.get({ plain: true })),
+            feed: true,
+            loggedIn: req.session.logged_in
         });
     } catch (err) {
         console.log(err);

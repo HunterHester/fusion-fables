@@ -2,15 +2,35 @@
 <div class="container">
 	<div class="row">
         <div class="col-md-10 mx-auto text-left mt-5">
-            <h1>{{ post.title }}</h1>
-            <p>Written by <strong>{{ post.user.username }}</strong> on <strong>{{ format_date post.createdAt }}</strong></p>
-            <p>{{ post.post_body }}</p>
+            <div class="card text-dark shadow">
+                <div class="card-header">
+                    <h1>{{ post.title }}</h1>
+                    <p>Written by <strong><a href="/u/{{post.user.username}}">{{ post.user.username }}</a></strong> on <strong>{{ format_date post.createdAt }}</strong></p>
+                </div>
+                <div class="card-body">
+                    <p>{{ post.post_body }}</p>
+                </div>
+                <div class="card-footer">
+                    {{#each post.comments}}
+                        {{> comment-card}}
+                    {{/each}}
+                    {{#if loggedIn}}
+                        {{#if post.allow_comments}}
+                            {{> comment-form }}
+                        {{else}}
+                        <p><em>Comments are turned off for this post.</em></p>
+                        {{/if}}
+                    {{else}}
+                    <p><em>Please <a href="/login">log in</a> to be able to post comments.</em></p>
+                    {{/if}}
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 {{!-- comment --}}
-{{#each post.comments as |comment|}}
+{{!-- {{#each post.comments as |comment|}}
 <div class="container">
 	<div class="row">
         <div class="col-md-10 mx-auto text-left mt-3 mb-3">
@@ -24,4 +44,4 @@
         </div>
     </div>
 </div>
-{{/each}}
+{{/each}} --}}

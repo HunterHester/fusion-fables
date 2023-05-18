@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="col-md-6 mx-auto pt-4">
+        <a href="/{{this.id}}" class="card-link">
+            <div class="card text-dark shadow">
+                <div class="card-header">
+                    <h3>{{this.title}}</h3>
+                    <p class="small">Created {{format_date this.createdAt}} by {{this.user.username}}</p>
+                </div>
+                <div class="card-body text-truncate">
+                    {{this.post_body}}
+                </div>
+
+                <div class="card-footer">
+                    <span>{{num_of_comments this.comments}}</span>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<style>
+  .card:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    transition: all 0.3s ease;
+  }
+
+</style>
