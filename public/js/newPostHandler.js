@@ -6,34 +6,25 @@ async function newPostHandler(event) {
     let is_public = document.querySelector('#isPublic');
     let allow_comments = document.querySelector('#allowComments');
 
-    if (is_public.checked) {
-        is_public = true;
-    }
-    is_public = false;
+    if (title && post_body) {
+        const response = await fetch(`/api/blog`, {
+            method: 'POST',
+            body: JSON.stringify({
+                title,
+                post_body,
+                is_public: is_public.checked,
+                allow_comments: allow_comments.checked
+            }),
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
 
-    if (allow_comments.checked) {
-        allow_comments = true;
-    }
-    allow_comments = false;
-    
-
-    const response = await fetch(`/api/blog`, {
-        method: 'POST',
-        body: JSON.stringify({
-            title,
-            post_body,
-            is_public,
-            allow_comments
-        }),
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-
-    if (response.ok) {
-        document.location.replace('/');
-    } else {
-        alert(response.statusText);
+        if (response.ok) {
+            document.location.replace('/');
+        } else {
+            alert(response.statusText);
+        }
     }
 };
 
