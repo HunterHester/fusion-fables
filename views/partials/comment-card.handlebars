@@ -3,5 +3,9 @@
         <h5 class="card-title">{{this.user.username}}</h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ format_date this.createdAt}}</h6>
         <p class="card-text">{{this.comment_body}}</p>
+        <div class="d-grid gap-2 d-md-block">
+            <button class="btn btn-primary delete-btn" type="button" style="float: right; margin: 4px; margin-top: -15px">Delete</button>
+            <button class="btn btn-primary edit-btn" type="button" style="float: right; margin: 4px; margin-top: -15px">Edit</button>
+        </div>
     </div>
     <hr>
