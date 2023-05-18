@@ -1,13 +1,13 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 
-// READ one user by ID OR Username
-router.get('/:id', async (req, res) => {
+router.get('/:u/:id', async (req, res) => {
     try {
-        if(isNaN(req.params.id)) {
-            const userData = await User.findOne({
+        let userData;
+        if(isNaN(req.params.u)) {
+            userData = await User.findOne({
                 where: {
-                    username: req.params.id,
+                    username: req.params.u,
                 },
                 include: {
                     model: Post,
@@ -16,25 +16,60 @@ router.get('/:id', async (req, res) => {
                         include: {
                             model: User,
                             attributes: ['username'],
-                        }
-                    }
+                        },
+                        order: [['updated_at', 'DESC']]
+                    },
+                    order: [['updated_at', 'ASC']]
                 },
                 attributes: { exclude: ['password', 'email'] }
             });
 
-            if (!userData) {
-                res.status(404).json({ message: 'No user with this ID!' });
-                return;
-            }
-
-            res.render('userPage', {
-                user: userData.get({ plain: true }),
-                posts: userData.posts.map((p) => p.get({ plain: true })),
-                loggedIn: req.session.logged_in
-
-            });
         } else {
-            const userData = await User.findByPk(req.params.id, {
+            userData = await User.findByPk(req.params.u, {
+                include: {
+                    model: Post,
+                    include: {
+                        model: Comment,
+                        include: {
+                            model: User,
+                            attributes: ['username'],
+                        },
+                        order: [['updated_at', 'DESC']]
+                    },
+                    order: [['updated_at', 'ASC']]
+                },
+                attributes: { exclude: ['password', 'email'] }
+            });
+        }
+        
+        if (!postData) {
+            res.status(404).json({ message: "No blog posts found" });
+            return;
+        }
+
+
+        console.log(postData);
+        const post = postData.get({ plain: true });
+        console.log(post);
+        res.render("view", {
+            post,
+            loggedIn: req.session.logged_in
+        });
+    } catch(err) {
+        console.log(err);
+        res.status(500).json(err);
+    };
+})
+
+// READ one user by ID OR Username
+router.get('/:u', async (req, res) => {
+    try {
+        let userData;
+        if(isNaN(req.params.u)) {
+            userData = await User.findOne({
+                where: {
+                    username: req.params.u,
+                },
                 include: {
                     model: Post,
                     include: {
@@ -50,19 +85,36 @@ router.get('/:id', async (req, res) => {
                 attributes: { exclude: ['password', 'email'] }
             });
 
-            if (!userData) {
-                res.status(404).json({ message: 'No user with this ID!' });
-                return;
-            }
-
-            console.log()
-
-            res.render('userPage', {
-                user: userData.get({ plain: true }),
-                posts: userData.posts.map((p) => p.get({ plain: true })),
-                loggedIn: req.session.logged_in
+        } else {
+            userData = await User.findByPk(req.params.u, {
+                include: {
+                    model: Post,
+                    include: {
+                        model: Comment,
+                        include: {
+                            model: User,
+                            attributes: ['username'],
+                        },
+                        order: [['updated_at', 'DESC']]
+                    },
+                    order: [['updated_at', 'DESC']]
+                },
+                attributes: { exclude: ['password', 'email'] }
             });
         }
+
+        if (!userData) {
+            // TODO: ADD .render() OF 404 PAGE
+            res.status(404).json({ message: 'No user with this ID!' });
+            return;
+        }
+
+        res.render('userPage', {
+            user: userData.get({ plain: true }),
+            posts: userData.posts.map((p) => p.get({ plain: true })),
+            loggedIn: req.session.logged_in
+        });
+
     } catch (err) {
         console.error(err);
         res.status(500).json(err);

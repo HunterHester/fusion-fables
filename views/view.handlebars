@@ -1,5 +1,7 @@
 {{> post-body}}
 {{#if loggedIn}}
-    {{> comment-form }}
+    {{#if post.allow_comments}}
+        {{> comment-form }}
+    {{/if}}
 {{/if}}
 <script src="/js/newCommentHandler.js"></script>
