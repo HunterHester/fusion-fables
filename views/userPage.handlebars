@@ -1,4 +1,4 @@
-<div class="container">
+{{!-- <div class="container"> --}}
     <div class="row">
         <div class="text-center mx-auto pt-2">
             <h1>{{user.username}}'s Blog</h1>
@@ -7,7 +7,7 @@
     {{#each posts}}
         {{> post-card}}
     {{/each}}
-</div>
+{{!-- </div> --}}
 
 <style>
     .fixed-bottom {
@@ -16,9 +16,10 @@
         bottom: 0;
         z-index: 999;
     }
+
 </style>
 <div class="fixed-bottom d-flex justify-content-end pr-3 pb-3">
   <a href="/create" class="btn btn-lg">
-    <i class="bi-plus-circle-fill" style="font-size: 3rem; color: #1DA1F2"></i>
+    <i class="bi-plus-square-fill" style="font-size: 3rem; color: #1DA1F2"></i>
   </a>
 </div>
