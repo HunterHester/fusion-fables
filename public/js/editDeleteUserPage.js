@@ -6,7 +6,7 @@ const editUserPageHandler = async (event) => {
 const deleteUserPageHandler = async (event) => {
     event.preventDefault();
     console.log(event.target);
-    const response = await fetch(`api/blog/${event.target.id}`, {
+    const response = await fetch(`api/blog/${event.target.data-id}`, {
         method: 'DELETE',
     });
 

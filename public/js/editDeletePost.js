@@ -7,7 +7,7 @@ const editPostHandler = async (event) => {
 const deletePostHandler = async (event) => {
     event.preventDefault();
     console.log(event.target);
-    const response = await fetch(`api/comment/${event.target.id}`, {
+    const response = await fetch(`api/comment/${event.target.data-id}`, {
         method: 'DELETE'
     });
 
