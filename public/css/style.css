@@ -1,5 +1,5 @@
 /* Style Home CSS */
 
-body {
-    background-color: blue;
+.bg-light {
+    background-color: rgba(0, 0, 0, 0.2)!important;
 }
