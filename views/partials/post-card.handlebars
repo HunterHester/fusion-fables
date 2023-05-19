@@ -3,12 +3,13 @@
         <a href="/{{this.id}}" class="card-link">
             <div class="card text-dark shadow">
                 <div class="card-header">
-                    <div class="d-grid gap-2 d-md-block">
-                        <button class="btn btn-primary delete-btn" type="button" style="float: right; margin: 4px">Delete</button>
-                        <button class="btn btn-primary edit-btn" type="button" style="float: right; margin: 4px">Edit</button>
-                    </div>
                     <h3>{{this.title}}</h3>
                     <p>Created {{format_date this.createdAt}}</p>
+                </div>
+                </a>
+                <div class="d-grid gap-2 d-md-block">
+                    <button class="btn btn-primary delete-btn" type="button" style="position: absolute; margin-top: -100px; margin-left: 583px">Delete</button>
+                    <button class="btn btn-primary edit-btn" type="button" style="position: absolute; margin-top: -100px; margin-left: 522px">Edit</button>
                 </div>
                 <div class="card-body text-truncate">
                     {{this.post_body}}
@@ -18,7 +19,7 @@
                     <span>{{num_of_comments this.comments}}</span>
                 </div>
             </div>
-        </a>
+        
     </div>
 </div>
 
@@ -28,7 +29,8 @@
     transform: scale(1.02);
     transition: all 0.3s ease;
   }
-
+  h3 {
+    font-family: 'Amatic SC', cursive;
+    {{!-- font-family: 'Macondo', cursive; --}}
+  }
 </style>
-
-<script src="/public/js/editDeleteUserPage.js"></script>
