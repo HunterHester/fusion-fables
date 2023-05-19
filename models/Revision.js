@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class Post extends Model {}
+class Revision extends Model {}
 
-Post.init(
+Revision.init(
     {
         id: {
             type: DataTypes.INTEGER,
@@ -11,14 +11,18 @@ Post.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        title: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
-        post_body: {
+        revision_body: {
             type: DataTypes.TEXT,
             allowNull: false,
             defaultValue: '',
+        },
+        post_id: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         },
         user_id: {
             type: DataTypes.INTEGER,
@@ -27,25 +31,15 @@ Post.init(
                 model: 'user',
                 key: 'id',
             },
-        },
-        is_public: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true,
-        },
-        allow_comments: {
-            type: DataTypes.BOOLEAN,
-            allowNull: false,
-            defaultValue: true,
-        },
+        }
     },
     {
         sequelize,
         timestamps: true,
         freezeTableName: true,
         underscored: true,
-        modelName: 'post',
+        modelName: 'revision',
     }
 );
     
-module.exports = Post;
+module.exports = Revision;

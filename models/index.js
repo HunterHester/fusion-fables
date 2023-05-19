@@ -2,6 +2,7 @@
 const Post = require('./Post');
 const User = require('./User');
 const Comment = require('./Comment');
+const Revision = require('./Revision');
 
 // User hasMany Post
 User.hasMany(Post, {
@@ -20,7 +21,7 @@ Post.hasMany(Comment, {
   onDelete: 'CASCADE',
 });
 
-// Comment hasOne Post
+// Comment belongsTo Post
 Comment.belongsTo(Post, {
   foreignKey: 'post_id',
 });
@@ -31,9 +32,31 @@ User.hasMany(Comment, {
   onDelete: 'CASCADE',
 });
 
-// Comment hasOne User
+// Comment belongsTo User
 Comment.belongsTo(User, {
   foreignKey: 'user_id',
 });
 
-module.exports = { Post, User, Comment };
+// Post hasMany Revision
+Post.hasMany(Revision, {
+  foreignKey: 'post_id',
+  onDelete: 'CASCADE'
+});
+
+// Revision belongsTo Post
+Revision.belongsTo(Post, {
+  foreignKey: 'post_id'
+});
+
+// User hasMany Revision
+User.hasMany(Revision, {
+  foreignKey: 'user_id',
+  onDelete: 'CASCADE'
+});
+
+// Revision belongsTo User
+Revision.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+module.exports = { Post, User, Comment, Revision };
