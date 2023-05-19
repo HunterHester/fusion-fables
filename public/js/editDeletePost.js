@@ -1,6 +1,7 @@
 const editPostHandler = async (event) => {
     event.preventDefault();
     console.log('Clicked Me');
+    // const response = await fetch(`api/comment/${.id}`)
 };
 
 const deletePostHandler = async (event) => {
