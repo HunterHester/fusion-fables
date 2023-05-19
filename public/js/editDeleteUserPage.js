@@ -3,9 +3,6 @@ const editDeleteUserPageHandler = async (event) => {
     console.log('Clicked me');
 };
 
-document.querySelector('.delete-btn').addEventListener('click', editDeleteUserPageHandler);
-document.querySelector('.edit-btn').addEventListener('click', editDeleteUserPageHandler);
-
 const deleteButton = document.querySelectorAll('.delete-btn');
 const editButton = document.querySelectorAll('.edit-btn');
 
