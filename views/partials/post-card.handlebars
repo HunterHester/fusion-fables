@@ -3,6 +3,7 @@
         <a href="/u/{{this.user.username}}/{{this.id}}" class="card-link">
             <div class="card text-dark shadow" id={{this.id}}>
                 <div class="card-header">
+                    
                     <h3>{{this.title}}</h3>
                     <p>Created {{format_date this.createdAt}}</p>
                 </div>
@@ -33,4 +34,7 @@
     font-family: 'Amatic SC', cursive;
     {{!-- font-family: 'Macondo', cursive; --}}
   }
+    .card-header {
+        background: beige;
+    }
 </style>

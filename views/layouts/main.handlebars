@@ -14,8 +14,8 @@
     <title>Bloggers</title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light navbar-expand-lg" role="navigation">
-        <a class="navbar-brand" href="#">BlogSpace</a>
+    <nav class="navbar navbar-light bg-light navbar-expand-lg" role="navigation" >
+        <a class="navbar-brand" href="#">Fusion Fables</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -48,12 +48,12 @@
             <ul class="navbar-nav ml-0">
                 {{#if loggedIn}}
                 <li class="nav-item">
-                    <button class="btn btn-primary" id="logout">Logout</button>
+                    <button class="btn btn-primary" id="logout" style="background: black;">Logout</button>
                 </li>
                 <script src="/js/logout.js"></script>
                 {{else}}
                 <li class="nav-item">
-                    <a class="nav-link text-primary" href="/login">Login</a>
+                    <a class="nav-link text-primary" style="background: black;" href="/login">Login</a>
                 </li>
                 {{/if}}
             </ul>
@@ -63,6 +63,7 @@
     <script src="/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     {{{body}}}
 
     <style>
@@ -77,6 +78,11 @@
         font-family: 'Amatic SC', cursive;
         {{!-- font-family: 'Macondo', cursive; --}}
     }
+    .bg-light {
+    background-color: rgba(0, 0, 0, 0.2)!important;
+    }
+
+    
     </style>
 
 </body>
