@@ -9,7 +9,8 @@ const userData = [
   {"username":"modlin6","password":"ydsbO*Psd","email":"mtewkesberrie6@un.org"},
   {"username":"vpietrzyk7","password":"as4G867D$R8","email":"rpaulmann7@webmd.com"},
   {"username":"jlearoid8","password":"BkR#7c4","email":"ealgie8@ustream.tv"},
-  {"username":"qallain9","password":"J8mBmlW@Ul2y","email":"jlevens9@blogspot.com"}
+  {"username":"qallain9","password":"J8mBmlW@Ul2y","email":"jlevens9@blogspot.com"},
+  {"username":"knjaasdf7","password":"Hafnu73ds$", "email":"whatever@whatever.com"}
 ]
 
 const seedUsers = () => User.bulkCreate(userData, { individualHooks: true });
