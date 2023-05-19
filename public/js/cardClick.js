@@ -2,7 +2,7 @@ const goToPost = async (event) => {
     event.preventDefault();
     event.stopPropogation();
   
-    document.location.replace(`/u/${event.target.}`);
+    document.location.replace(`/u/${event.target.id}`);
 };
 
 document.querySelector('#post-link').addEventListener('click', goToPost);
