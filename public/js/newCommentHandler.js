@@ -4,9 +4,8 @@ async function newCommentHandler(event) {
     // get text and trim whitespace
     const comment_body = document.getElementById('comment').value.trim();
     // get post id from URL
-    const post_id = window.location.toString().split('/')[
-    window.location.toString().split('/').length - 1
-    ];
+    const url = window.location.toString().split('/');
+    const post_id = url[url.length - 1];
 
     if (comment_body) {
     const response = await fetch('/api/comment', {

@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Post, Comment, User } = require('../../models');
+const { Post, Comment, User, Revision } = require('../../models');
 
 // CREATE Post
 router.post('/', async (req, res) => {
@@ -42,7 +42,33 @@ router.get("/", async (req, res) => {
     }
 });
 
-// READ Posts by ID
+// // READ Posts by ID
+// router.get("/:id", async (req, res) => {
+//     try {
+//         const postData = await Post.findAll({
+//             where: {
+//                 id: req.params.id,
+//             },
+//             include: [{
+//                 model: User,
+//                 attributes: { exclude: ['password', 'email'] },
+//             }, 
+//             {
+//                 model: Comment,
+//                 include: {
+//                     model: User,
+//                     attributes: ['username'],
+//                 }
+//             }],
+//             order: [['updated_at', 'DESC']]
+//         })
+//         res.status(200).json(postData);
+//     } catch (err) {
+//         res.status(500).json(err);
+//     }
+// });
+
+// READ Posts by ID with REVISIONS
 router.get("/:id", async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -52,7 +78,15 @@ router.get("/:id", async (req, res) => {
             include: [{
                 model: User,
                 attributes: { exclude: ['password', 'email'] },
-            }, 
+            },
+            {
+                model: Revision,
+                include: {
+                    model: User,
+                    attributes: ['username'],
+                },
+                order: [['created_at', 'ASC']]
+            },
             {
                 model: Comment,
                 include: {
