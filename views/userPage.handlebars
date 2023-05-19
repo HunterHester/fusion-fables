@@ -4,9 +4,17 @@
             <h1>{{user.username}}'s Blog</h1>
         </div>
     </div>
-    {{#each posts}}
+    {{#if posts.[0]}}
+        {{#each posts}}
         {{> post-card}}
     {{/each}}
+<<<<<<< Updated upstream
+=======
+    {{else}}
+        {{> no-post}}
+    {{/if}}
+    <script src="/js/cardClick.js"></script>
+>>>>>>> Stashed changes
 {{!-- </div> --}}
 
 <style>
