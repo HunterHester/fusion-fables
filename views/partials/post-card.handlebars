@@ -1,26 +1,22 @@
 <div class="row">
     <div class="col-md-6 mx-auto pt-4">
-        <a href="/{{this.id}}" class="card-link">
-            <div class="card text-dark shadow">
-                <div class="card-header">
-                    
-                    <h3>{{this.title}}</h3>
-                    <p>Created {{format_date this.createdAt}}</p>
-                </div>
-                </a>
-                <div class="d-grid gap-2 d-md-block">
-                    <button class="btn btn-primary delete-btn" id={{this.id}} type="button" style="position: absolute; margin-top: -100px; margin-left: 583px">Delete</button>
-                    <button class="btn btn-primary edit-btn" id={{this.id}} type="button" style="position: absolute; margin-top: -100px; margin-left: 522px">Edit</button>
-                </div>
-                <div class="card-body text-truncate">
-                    {{this.post_body}}
-                </div>
-
-                <div class="card-footer">
-                    <span>{{num_of_comments this.comments}}</span>
-                </div>
+        <div class="card text-dark shadow" id="post-link" data-id={{this.id}} data-user={{this.user.username}}>
+            <div class="card-header">
+                <h3>{{this.title}}</h3>
+                <p>Created {{format_date this.createdAt}}</p>
             </div>
-        
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-primary delete-btn" data-id={{this.id}} type="button" style="position: absolute; margin-top: -100px; margin-left: 583px">Delete</button>
+                <button class="btn btn-primary edit-btn" data-id={{this.id}} type="button" style="position: absolute; margin-top: -100px; margin-left: 522px">Edit</button>
+            </div>
+            <div class="card-body text-truncate">
+                {{this.post_body}}
+            </div>
+
+            <div class="card-footer">
+                <span>{{num_of_comments this.comments}}</span>
+            </div>
+        </div>
     </div>
 </div>
 
@@ -38,3 +34,5 @@
         background: beige;
     }
 </style>
+
+

@@ -4,6 +4,7 @@ const exphbs = require('express-handlebars');
 const handlebars = require('handlebars');
 const routes = require('./controllers');
 const path = require('path');
+const { clog } = require('./middleware/clog');
 const helpers = require('./utils/helpers');
 
 // import db connection
@@ -15,6 +16,7 @@ const SequelizeStore = require('connect-session-sequelize')(session.Store);
 // create express server, set port
 const app = express();
 const PORT = process.env.PORT || 3001;
+app.use(clog);
 
 // configure session object with store
 const sess = {
