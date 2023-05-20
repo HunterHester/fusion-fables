@@ -89,14 +89,19 @@ router.get('/:u', async (req, res) => {
         }
         
         const myBlog = req.session.user_id === userData.id;
-        console.log(myBlog);
 
-        userData.posts.map((p) => p.myBlog = myBlog);
-        console.log(userData.posts.map((p) => p.get({ plain: true })));
+        // Converts to simple object array
+        const postsJson = userData.posts.map((p) => p.get({ plain: true }));
+
+        // Adds myBlog to objects in array
+        const finalPosts = postsJson.map((p) => {
+            p['myBlog'] = myBlog;
+            return p;
+        });
 
         res.render('userPage', {
             user: userData.get({ plain: true }),
-            posts: userData.posts.map((p) => p.get({ plain: true })),
+            posts: finalPosts,
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
         });
