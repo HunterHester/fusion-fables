@@ -4,7 +4,18 @@
         <div class="col-md-10 mx-auto text-left mt-5">
             <div class="card text-dark shadow">
                 <div class="card-header">
-                    <h1>{{ post.title }}</h1>
+                    <div class="row">
+                        <h1 class="col-6 mx-auto">{{ post.title }}</h1>
+                        <div class="col-6 d-flex justify-content-end">
+                            <div class="dropdown">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle mr-0" type="button" data-toggle="dropdown" aria-expanded="false"></button>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <button class="dropdown-item mx-auto edit-btn" type="button">Edit this post</button>
+                                    <button class="dropdown-item mx-auto del-post-btn" type="button">Delete this post</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <p>Written by <strong><a href="/u/{{post.user.username}}">{{ post.user.username }}</a></strong> on <strong>{{ format_date post.createdAt }}</strong></p>
                 </div>
                 <div class="card-body">
@@ -46,4 +57,4 @@
     
 </style>
 
-<script src="/js/editDeletePost.js"></script>
+<script src="/js/cardClick.js"></script>

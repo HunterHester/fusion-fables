@@ -1,6 +1,10 @@
 const router = require('express').Router();
 const { User, Post, Comment } = require('../models');
 
+router.get('/:u/:id/:edit', async (req, res) => {
+
+})
+
 router.get('/:u/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk( req.params.id, {
@@ -14,7 +18,7 @@ router.get('/:u/:id', async (req, res) => {
                     model: User,
                     attributes: ['id', 'username'],
                 },            
-                order: [['updated_at', 'DESC']]
+                order: [['created_at', 'DESC']]
             }],
         });
         
@@ -34,8 +38,8 @@ router.get('/:u/:id', async (req, res) => {
     } catch(err) {
         console.log(err);
         res.status(500).json(err);
-    };
-})
+    }
+});
 
 // READ one user by ID OR Username
 router.get('/:u', async (req, res) => {
@@ -54,12 +58,12 @@ router.get('/:u', async (req, res) => {
                             model: User,
                             attributes: ['id', 'username'],
                         },
-                        order: [['updated_at', 'DESC']]
+                        order: [['created_at', 'DESC']]
                     }, {
                         model: User,
                         attributes: ['id', 'username']
                     }],
-                    order: [['updated_at', 'DESC']]
+                    order: [['created_at', 'DESC']]
                 },
                 attributes: { exclude: ['password', 'email'] }
             });
