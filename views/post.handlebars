@@ -4,6 +4,7 @@
         <div class="col-md-10 mx-auto text-left mt-5">
             <div class="card text-dark shadow">
                 <div class="card-header">
+                    {{#if post.myBlog}}
                     <div class="row">
                         <h1 class="col-6 mx-auto">{{ post.title }}</h1>
                         <div class="col-6 d-flex justify-content-end">
@@ -16,6 +17,9 @@
                             </div>
                         </div>
                     </div>
+                    {{else}}
+                    <h1>{{ post.title }}</h1>
+                    {{/if}}
                     <p>Written by <strong><a href="/u/{{post.user.username}}">{{ post.user.username }}</a></strong> on <strong>{{ format_date post.createdAt }}</strong></p>
                 </div>
                 <div class="card-body">

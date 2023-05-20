@@ -27,7 +27,11 @@ router.get('/:u/:id', async (req, res) => {
             return;
         };
 
+        const myBlog = req.session.user_id === postData.user.id;
+
+        // Converts to simple object array
         const post = postData.get({ plain: true });
+        post['myBlog'] = myBlog;
 
         res.render("post", {
             post,
