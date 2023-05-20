@@ -4,10 +4,10 @@
             <h1>{{user.username}}'s Blog</h1>
         </div>
     </div>
-    {{#each posts}}
+    {{#if posts.[0]}}
+        {{#each posts}}
         {{> post-card}}
     {{/each}}
-    <script src="/js/cardClick.js"></script>
 {{!-- </div> --}}
 
 <style>
