@@ -5,13 +5,11 @@
                 <h3>{{this.title}}</h3>
                 <p>Created {{format_date this.createdAt}}</p>
             </div>
-            {{#if this.myBlog}}
-                <div class="card-body d-grid gap-2 d-md-block">
-                    <button class="btn btn-primary delete-btn" id={{this.id}} type="button" style="margin-top: -100px; margin-right: 6px; padding-left: 16px; float: right;">Delete</button>
-                    <br>
-                    <button class="btn btn-primary edit-btn" id={{this.id}} type="button" style="margin-top: -124px; margin-right: 89px; padding-left: 15px; padding-right: 12px; float: right;">Edit</button>
-                </div>
-            {{/if}}
+            <div class="card-body d-grid gap-2 d-md-block">
+                <button class="btn btn-primary delete-btn" id={{this.id}} type="button" style="margin-top: -100px; margin-right: 6px; padding-left: 16px; float: right;">Delete</button>
+                <br>
+                <button class="btn btn-primary edit-btn" id={{this.id}} type="button" style="margin-top: -124px; margin-right: 89px; padding-left: 15px; padding-right: 12px; float: right;">Edit</button>
+            </div>
             <div class="card-body text-truncate">
                 {{this.post_body}}
             </div>
