@@ -5,6 +5,13 @@
                 <div class="card-header">
                     <h3>{{this.title}}</h3>
                     <p class="small">Created {{format_date this.createdAt}} by {{this.user.username}}</p>
+                    <p>Created {{format_date this.createdAt}}</p>
+                </div>
+                </a>
+                <div class="d-grid gap-2 d-md-block">
+                    <button class="btn btn-primary delete-btn" id={{this.id}} type="button" style=" margin-top: -100px; padding-left: 100px; float: right;">Delete</button>
+                    <br>
+                    <button class="btn btn-primary edit-btn" id={{this.id}} type="button" style=" margin-top: -100px; padding-left: 100px; float: right;">Edit</button>
                 </div>
                 <div class="card-body text-truncate">
                     {{this.post_body}}
