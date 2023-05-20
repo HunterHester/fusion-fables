@@ -81,7 +81,9 @@ router.get('/create', async (req, res) => {
 
 router.get('/about', async (req, res) => {
     try{
-        res.render('about');
+        res.render('about', {
+            loggedIn: req.session.logged_in,
+        });
     } catch (err) {
         console.log(err);
         res.status(500).json(err);
