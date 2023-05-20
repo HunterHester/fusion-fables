@@ -25,7 +25,7 @@ router.get('/:u/:id', async (req, res) => {
 
         const post = postData.get({ plain: true });
 
-        res.render("view", {
+        res.render("post", {
             post,
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
@@ -87,6 +87,12 @@ router.get('/:u', async (req, res) => {
             res.status(404).json({ message: 'No user with this ID!' });
             return;
         }
+        
+        const myBlog = req.session.user_id === userData.id;
+        console.log(myBlog);
+
+        userData.posts.map((p) => p.myBlog = myBlog);
+        console.log(userData.posts.map((p) => p.get({ plain: true })));
 
         res.render('userPage', {
             user: userData.get({ plain: true }),

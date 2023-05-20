@@ -3,10 +3,8 @@ const goToPost = async (event) => {
     event.stopPropagation();
 
     console.log('Clicked');
-    // console.log(`id: ${event.currentTarget.dataset.id}`);
     
     window.location.replace(`/u/${event.currentTarget.dataset.user}/${event.currentTarget.dataset.id}`);
-
 };
 
 const postLinks = document.querySelectorAll('#post-link');
