@@ -2,7 +2,10 @@
   "name": "group-project-2",
   "description": "Group-Project-2 (Blog)",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
+  "engines": {
+    "npm": "8.19.3"
+  },
   "scripts": {
     "test": "jest",
     "start": "node server.js",
