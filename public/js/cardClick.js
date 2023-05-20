@@ -16,7 +16,15 @@ const delPost = async (event) => {
     event.preventDefault();
     event.stopPropagation();
     
-    console.log('DELETE POST WIP');
+    const response = await fetch(`/api/blog/${event.target.id}`, {
+        method: 'DELETE'
+    });
+
+    if(response.ok) {
+        document.location.reload();
+    } else {
+        alert(response.statusText);
+    }
 };
 
 const delComment = async (event) => {
