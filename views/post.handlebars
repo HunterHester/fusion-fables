@@ -12,16 +12,16 @@
                 </div>
                 <div class="card-footer">
                     {{#each post.comments}}
-                        {{> comment-card}}
+                        {{> card-comment}}
                     {{/each}}
                     {{#if loggedIn}}
                         {{#if post.allow_comments}}
-                            {{> comment-form }}
+                            {{> form-comment }}
                         {{else}}
                         <p><em>Comments are turned off for this post.</em></p>
                         {{/if}}
                     {{else}}
-                    <p><em>Please <a href="/login">log in</a> to be able to post comments.</em></p>
+                        <p><em>Please <a href="/login">log in</a> to be able to post comments.</em></p>
                     {{/if}}
                 </div>
             </div>
@@ -46,19 +46,4 @@
     
 </style>
 
-{{!-- comment --}}
-{{!-- {{#each post.comments as |comment|}}
-<div class="container">
-	<div class="row">
-        <div class="col-md-10 mx-auto text-left mt-3 mb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{comment.user.username}}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted">{{ format_date comment.createdAt}}</h6>
-                    <p class="card-text">{{comment.comment_body}}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-{{/each}} --}}
+<script src="/js/editDeletePost.js"></script>

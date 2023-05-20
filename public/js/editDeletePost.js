@@ -1,5 +1,7 @@
 const editPostHandler = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
+    
     console.log('Clicked Me');
     console.log(event.target);
     console.log(document.querySelector('.card-text').textContent);
@@ -23,8 +25,10 @@ const editPostHandler = async (event) => {
 
 const deletePostHandler = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
+
     console.log(event.target);
-    const response = await fetch(`api/comment/${event.target.data-id}`, {
+    const response = await fetch(`/api/comment/${event.target.id}`, {
         method: 'DELETE'
     });
 

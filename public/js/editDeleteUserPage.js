@@ -1,12 +1,16 @@
 const editUserPageHandler = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
+    
     console.log('Clicked me');
 };
 
 const deleteUserPageHandler = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
+
     console.log(event.target);
-    const response = await fetch(`api/blog/${event.target.data-id}`, {
+    const response = await fetch(`/api/blog/${event.target.id}`, {
         method: 'DELETE',
     });
 

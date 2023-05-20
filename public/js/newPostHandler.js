@@ -21,7 +21,7 @@ async function newPostHandler(event) {
         });
 
         if (response.ok) {
-            document.location.replace('/');
+            document.location.replace('/userPage');
         } else {
             alert(response.statusText);
         }
