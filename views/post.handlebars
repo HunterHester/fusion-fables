@@ -11,8 +11,8 @@
                             <div class="dropdown">
                                 <button class="btn btn-sm btn-secondary dropdown-toggle mr-0" type="button" data-toggle="dropdown" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <button class="dropdown-item mx-auto edit-btn" type="button">Edit this post</button>
-                                    <button class="dropdown-item mx-auto del-post-btn" type="button">Delete this post</button>
+                                    <button class="dropdown-item mx-auto edit-btn" type="button" data-id={{post.id}}>Edit this post</button>
+                                    <button class="dropdown-item mx-auto del-post-btn" type="button" data-id={{post.id}} data-user={{this.user.id}}>Delete this post</button>
                                 </div>
                             </div>
                         </div>

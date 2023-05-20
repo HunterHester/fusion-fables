@@ -29,10 +29,12 @@
    
 
 </style>
-<div class="fixed-bottom d-flex justify-content-end pr-3 pb-3">
-  <a href="/create" class="btn btn-lg">
-    <i class="bi-plus-square-fill" style="font-size: 3rem; color: #1DA1F2"></i>
-  </a>
-</div>
+{{#if myBlog}}
+    <div class="fixed-bottom d-flex justify-content-end pr-3 pb-3">
+    <a href="/create" class="btn btn-lg">
+        <i class="bi-plus-square-fill" style="font-size: 3rem; color: #1DA1F2"></i>
+    </a>
+    </div>
+{{/if}}
 
 <script src="/js/editDeleteUserPage.js"></script>

@@ -112,6 +112,7 @@ router.get('/:u', async (req, res) => {
             posts: finalPosts,
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
+            myBlog,
         });
 
     } catch (err) {

@@ -9,19 +9,19 @@ const goToEdit = async (event) => {
     event.preventDefault();
     event.stopPropagation();
 
-    console.log('EDIT WIP');
+    console.log(`EDIT WIP; ID: ${event.currentTarget.dataset.id}`);
 };
 
 const delPost = async (event) => {
     event.preventDefault();
     event.stopPropagation();
     
-    const response = await fetch(`/api/blog/${event.target.id}`, {
+    const response = await fetch(`/api/blog/${event.currentTarget.dataset.id}`, {
         method: 'DELETE'
     });
 
     if(response.ok) {
-        document.location.reload();
+        window.location.replace('/userPage');
     } else {
         alert(response.statusText);
     }
@@ -31,14 +31,30 @@ const delComment = async (event) => {
     event.preventDefault();
     event.stopPropagation();
     
-    console.log('DELETE COMMENT WIP');
+    const response = await fetch(`/api/comment/${event.currentTarget.dataset.id}`, {
+        method: 'DELETE'
+    });
+
+    if(response.ok) {
+        window.location.reload();
+    } else {
+        alert(response.statusText);
+    }
 };
 
 const delRevision = async (event) => {
     event.preventDefault();
     event.stopPropagation();
     
-    console.log('DELETE REVISION WIP');
+    const response = await fetch(`/api/revision/${event.currentTarget.dataset.id}`, {
+        method: 'DELETE'
+    });
+
+    if(response.ok) {
+        document.location.reload();
+    } else {
+        alert(response.statusText);
+    }
 };
 
 // Event listeners for #post-link elements 
