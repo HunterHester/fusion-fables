@@ -14,6 +14,7 @@ const editPostHandler = async (event) => {
 
 const editComment = async (event) => {
     event.preventDefault();
+    event.stopPropagation();
 
     // get text and trim whitespace
     const comment_body = document.getElementById('edit-comment').value;
@@ -143,4 +144,13 @@ for(let i = 0; i < delCommentLink.length; i++) {
 const delRevisionLink = document.querySelectorAll('.del-revision-btn');
 for(let i = 0; i < delRevisionLink.length; i++) {
     delRevisionLink[i].addEventListener('click', delRevision);
+};
+
+// Event listeners for dropdown-toggle elements
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle-post-card');
+for(let i = 0; i < dropdownToggles.length; i++) {
+    dropdownToggles[i].addEventListener('click', (e) => {
+        e.stopPropagation();
+        $(`#dropdown-menu-${e.target.dataset.id}`).toggle();
+    });
 };
