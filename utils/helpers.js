@@ -25,7 +25,7 @@ module.exports = {
         return moment(created).format('LLLL') != moment(updated).format('LLLL');
     },
 
-    is_my_comment: (commentUserId, userId) => {
-        return commentUserId === userId;
+    is_my_page: (pageUser, userId) => {
+        return pageUser === userId;
     }
 };

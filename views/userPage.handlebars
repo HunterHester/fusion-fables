@@ -9,7 +9,19 @@
             {{> card-userPage}}
         {{/each}}
     {{else}}
-        {{> no-post}}
+        {{#if (is_my_page user.id userId)}}
+            <div class="container">
+                <div class="row justify-content-center">
+                    <a href="/create"><button class="btn btn-secondary">Create your first post!</button></a>
+                </div>
+            </div>
+        {{else}}
+            <div class="container">
+                <div class="row justify-content-center">
+                    <h1>This user hasn't created any posts yet!</h1>
+                </div>
+            </div>
+        {{/if}}
     {{/if}}
 
 {{!-- </div> --}}
