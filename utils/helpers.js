@@ -19,5 +19,9 @@ module.exports = {
             default:
                 return `${comments.length} comments`;
         }
+    },
+
+    is_edited: (created, updated) => {
+        return moment(created).fromNow() != moment(updated).fromNow();
     }
 };
