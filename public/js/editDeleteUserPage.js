@@ -1,8 +1,8 @@
 const editUserPageHandler = async (event) => {
     event.preventDefault();
     event.stopPropagation();
-    
-    console.log('Clicked me');
+
+    window.location.href = `/revise/${event.target.id}`;
 };
 
 const deleteUserPageHandler = async (event) => {

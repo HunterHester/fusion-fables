@@ -45,6 +45,22 @@ router.get('/login', async (req, res) => {
     }
 });
 
+router.get('/userPage/:id', async (req, res) => {
+    try{
+        const userData = await User.findByPk(req.session.user_id);
+
+        if (!userData) {
+            res.redirect('/login');
+            return;
+        }
+
+        res.redirect(`/u/${userData.username}/${req.params.id}`);
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
 router.get('/userPage', async (req, res) => {
     try{
         const userData = await User.findByPk(req.session.user_id);
@@ -66,6 +82,27 @@ router.get('/create', async (req, res) => {
     try {
         if (req.session.logged_in) {
             res.render('create', {
+                loggedIn: req.session.logged_in,
+                userId: req.session.user_id,
+            });
+            return;
+        } else {
+            res.redirect('/login');
+        }
+    } catch (err) {
+        console.log(err);
+        res.status(500).json(err);
+    }
+});
+
+// renders create new post page view (needs auth)
+router.get('/revise/:id', async (req, res) => {
+    try {
+        if (req.session.logged_in) {
+            const post = await Post.findByPk(req.params.id);
+
+            res.render('edit-create', {
+                post: post.get({ plain: true }),
                 loggedIn: req.session.logged_in,
                 userId: req.session.user_id,
             });
