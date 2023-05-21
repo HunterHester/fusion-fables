@@ -1,8 +1,11 @@
 
-    <div class="card-body">
+    <div class="card-body" id="card-{{this.id}}">
         <h5 class="card-title"><a href="/u/{{this.user.username}}">{{this.user.username}}</a></h5>
         <h6 class="card-subtitle mb-2 text-muted">{{ format_date this.createdAt}}</h6>
-        <p class="card-text">{{this.comment_body}}</p>
+        {{#if (is_edited this.createdAt this.updatedAt)}}
+            <h6 class="card-subtitle mb-2 text-muted">Last edited: {{ format_date this.updatedAt}}</h6>
+        {{/if}}
+        <p class="card-text" id="text-{{this.id}}">{{this.comment_body}}</p>
         <div class="d-grid gap-2 d-md-block">
             <button class="btn btn-primary delete-btn" id={{this.id}} type="button" style="float: right; margin: 4px; margin-top: -15px">Delete</button>
             <button class="btn btn-primary edit-btn" id={{this.id}} type="button" style="float: right; margin: 4px; margin-top: -15px">Edit</button>
