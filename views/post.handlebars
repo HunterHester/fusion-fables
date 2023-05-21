@@ -11,8 +11,8 @@
                             <div class="dropdown">
                                 <button class="btn btn-sm btn-secondary dropdown-toggle mr-0" type="button" data-toggle="dropdown" aria-expanded="false"></button>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <button class="dropdown-item mx-auto edit-btn" type="button" data-id={{post.id}}>Edit this post</button>
-                                    <button class="dropdown-item mx-auto del-post-btn" type="button" data-id={{post.id}} data-user={{this.user.id}}>Delete this post</button>
+                                    <button class="dropdown-item mx-auto edit-post-btn" type="button" data-id={{post.id}}>Edit this post</button>
+                                    <button class="dropdown-item mx-auto del-post-btn" type="button" data-id={{post.id}} data-user={{post.user.id}}>Delete this post</button>
                                 </div>
                             </div>
                         </div>
@@ -20,13 +20,13 @@
                     {{else}}
                     <h1>{{ post.title }}</h1>
                     {{/if}}
-                    <p>Written by <strong><a href="/u/{{post.user.username}}">{{ post.user.username }}</a></strong> on <strong>{{ format_date post.createdAt }}</strong></p>
+                    <p>Written by <strong><a href="/u/{{post.user.username}}">{{ post.user.username }}</a></strong> - <strong>{{ format_date post.createdAt }}</strong></p>
                 </div>
                 <div class="card-body">
                     <p>{{ post.post_body }}</p>
                 </div>
                 <div class="card-footer">
-                    {{#each post.comments}}
+                    {{#each comments}}
                         {{> card-comment}}
                     {{/each}}
                     {{#if loggedIn}}
@@ -60,6 +60,3 @@
     }
     
 </style>
-
-<script src="/js/editDeletePost.js"></script>
-<script src="/js/cardClick.js"></script>

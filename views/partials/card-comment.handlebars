@@ -1,14 +1,29 @@
 
     <div class="card-body" id="card-{{this.id}}">
+        {{#if this.myComment}}
+        <div class="row">
+            <h5 class="col-11 mx-auto card-title"><a href="/u/{{this.user.username}}">{{this.user.username}}</a></h5>
+            <div class="col-1 d-flex justify-content-end">
+                <div class="dropdown">
+                    <button class="btn btn-sm btn-secondary dropdown-toggle mr-0" type="button" data-toggle="dropdown" aria-expanded="false"></button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        <button class="dropdown-item mx-auto edit-comment-btn" type="button" id={{this.id}}>Edit</button>
+                        <button class="dropdown-item mx-auto del-comment-btn" type="button" id={{this.id}} data-user={{this.user.id}}>Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{else}}
         <h5 class="card-title"><a href="/u/{{this.user.username}}">{{this.user.username}}</a></h5>
+        {{/if}}
         <h6 class="card-subtitle mb-2 text-muted">{{ format_date this.createdAt}}</h6>
         {{#if (is_edited this.createdAt this.updatedAt)}}
             <h6 class="card-subtitle mb-2 text-muted">Last edited: {{ format_date this.updatedAt}}</h6>
         {{/if}}
         <p class="card-text" id="text-{{this.id}}">{{this.comment_body}}</p>
-        <div class="d-grid gap-2 d-md-block">
+        {{!-- <div class="d-grid gap-2 d-md-block">
             <button class="btn btn-primary delete-btn" id={{this.id}} type="button" style="float: right; margin: 4px; margin-top: -15px">Delete</button>
             <button class="btn btn-primary edit-btn" id={{this.id}} type="button" style="float: right; margin: 4px; margin-top: -15px">Edit</button>
-        </div>
+        </div> --}}
     </div>
     <hr>

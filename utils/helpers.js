@@ -22,6 +22,10 @@ module.exports = {
     },
 
     is_edited: (created, updated) => {
-        return moment(created).fromNow() != moment(updated).fromNow();
+        return moment(created).format('LLLL') != moment(updated).format('LLLL');
+    },
+
+    is_my_page: (pageUser, userId) => {
+        return pageUser === userId;
     }
 };
