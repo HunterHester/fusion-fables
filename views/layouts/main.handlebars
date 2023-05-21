@@ -14,7 +14,7 @@
     <title>Fusion Fables</title>
 </head>
 <body>
-    <nav class="navbar navbar-light bg-light navbar-expand-lg" role="navigation" >
+    <nav class="navbar navbar-light bg-light navbar-expand-lg" role="navigation">
         <a class="navbar-brand" href="/">Fusion Fables</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@
                 </li>
             </ul>
             <div class="nav-item mr-4 ml-auto d-none d-lg-flex">
-                {{!-- NOTE: This code includes a search bar, but functionality is not built. Commenting out but leaving in for future development --}}
+                {{!-- NOTE: This code includes a search bar, but backend functionality is not built. Commenting out but leaving in for future development --}}
                 {{!-- <form class="form-inline">
                     <div class="input-group">
                         <div class="input-group-prepend">
@@ -46,7 +46,7 @@
                     </div>
                 </form> --}}
             </div>
-            <ul class="navbar-nav ml-0">
+            <ul class="navbar-nav mx-0">
                 {{#if loggedIn}}
                 <li class="nav-item">
                     <button class="btn btn-primary" id="logout" style="background: black;">Logout</button>
@@ -72,10 +72,9 @@
 
     {{{body}}}
 
+    <script src="/js/cardClick.js"></script>
+
     <style>
-    html {
-        background-color: antiquewhite;
-    }
     body {
         background: url('https://i.ibb.co/xC4SPPq/DALL-E-2023-05-20-20-06-15.png') no-repeat center center fixed;
         -webkit-background-size: cover;
@@ -83,6 +82,7 @@
         -o-background-size: cover;
         background-size: cover;
         padding-bottom: 85px; 
+        overflow-x: hidden;
     }
     .navbar-brand {
         font-family: 'Amatic SC', cursive;
@@ -91,8 +91,6 @@
     .bg-light {
     background-color: rgba(0, 0, 0, 0.2)!important;
     }
-
-    
     </style>
 
 </body>

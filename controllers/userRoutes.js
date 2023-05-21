@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const { User, Post, Comment, Revision } = require('../models');
 
-router.get('/:u/:id/:edit', async (req, res) => {
+// router.get('/:u/:id/:edit', async (req, res) => {
 
-})
+// })
 
 router.get('/:u/:id', async (req, res) => {
     try {
@@ -35,14 +35,24 @@ router.get('/:u/:id', async (req, res) => {
             return;
         };
 
+        // Adds verification of user to post
         const myBlog = req.session.user_id === postData.user.id;
-
-        // Converts to simple object array
         const post = postData.get({ plain: true });
         post['myBlog'] = myBlog;
 
+        // Adds verification of user to comments
+        const comments = postData.comments.map(comment => {
+            const myComment = req.session.user_id === comment.user.id;
+            const c = comment.get({ plain: true });
+            c['myComment'] = myComment;
+            return c;
+        });
+
+        console.log(comments);
+
         res.render("post", {
             post,
+            comments,
             loggedIn: req.session.logged_in,
             userId: req.session.user_id,
         });

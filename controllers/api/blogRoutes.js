@@ -113,7 +113,7 @@ router.put('/:id', async (req, res) => {
         if (!updatedPost[0]) {
             res.status(400).json({ message: "No post found with that id!" });
         }
-        res.status(200).json(updatedPost.get({ plain: true }));
+        res.status(200).json(updatedPost);
         console.log('Post updated!');
     } catch (err) {
         console.error(err);
