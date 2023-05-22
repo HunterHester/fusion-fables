@@ -38,6 +38,11 @@ Post.init(
             allowNull: false,
             defaultValue: true,
         },
+        up_votes: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+            defaultValue: 0
+        },
     },
     {
         sequelize,
