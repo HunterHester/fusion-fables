@@ -11,7 +11,11 @@
                 </div>
 
                 <div class="card-footer">
-                    <span>{{num_of_comments this.comments}}</span>
+                    {{#if this.allow_comments }}
+                        <span>{{num_of_comments this.comments}}</span>
+                        {{else}}
+                        <em>Comments are turned off for this post.</em>
+                    {{/if}}
                 </div>
             </div>
         {{!-- </a> --}}
