@@ -54,7 +54,17 @@ https://drive.google.com/file/d/1rs7Uj6IAD6Ud4okg2N-DwEgH_f7YYtfG/view
 
 ## Screenshots
 
+![Screenshot1-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/5b998d41-f9a2-4a0e-87f3-9f299d73cd7f)
 
+![Screenshot2-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/bb7af314-6024-4f48-b264-c0a46650bf00)
+
+![Screenshot3-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/58579050-cf24-4f3f-8718-a35935770db9)
+
+![Screenshot4-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/1e033748-fb64-44b6-a8df-8a267a6da32f)
+
+![Screenshot5-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/a9f6fa07-5fee-4f20-b692-dd3f45bb02cc)
+
+![Screenshot6-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/56c1e0db-5c99-457d-b7b7-8cb6110fc420)
 
 ## Technologies Used
 
