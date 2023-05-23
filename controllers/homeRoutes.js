@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { Comment, Post, User } = require('../models');
 const withAuth = require('../utils/auth');
 
-// get route, redirect user to blog if already signed in
+// LANDING PAGE: renders 'home.handlebars'
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -31,7 +31,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-// get route, redirect user to login page
+// LOGIN: Renders 'login.handlebars' and sign-up forms
 router.get('/login', async (req, res) => {
     try {
         if (req.session.logged_in) {
@@ -45,6 +45,7 @@ router.get('/login', async (req, res) => {
     }
 });
 
+// Rerouter for "My Blog" link, identifies current user and redirects to correct /u/ page (Specific Post)
 router.get('/userPage/:id', async (req, res) => {
     try{
         const userData = await User.findByPk(req.session.user_id);
@@ -61,6 +62,7 @@ router.get('/userPage/:id', async (req, res) => {
     }
 });
 
+// Rerouter for "My Blog" link, identifies current user and redirects to correct /u/ page (Full Blog)
 router.get('/userPage', async (req, res) => {
     try{
         const userData = await User.findByPk(req.session.user_id);
@@ -77,7 +79,7 @@ router.get('/userPage', async (req, res) => {
     }
 });
 
-// renders create new post page view (needs auth)
+// NEW POST PAGE: Renders 'create.handlebars'; redirects to /login if not logged in
 router.get('/create', async (req, res) => {
     try {
         if (req.session.logged_in) {
@@ -95,7 +97,7 @@ router.get('/create', async (req, res) => {
     }
 });
 
-// renders create new post page view (needs auth)
+// **WIP** REVISE PAGE: Renders revision page for editing others' posts or creating additional sections/drafts
 router.get('/revise/:id', async (req, res) => {
     try {
         if (req.session.logged_in) {
@@ -116,6 +118,7 @@ router.get('/revise/:id', async (req, res) => {
     }
 });
 
+// ABOUT PAGE: Renders 'about.handlebars'
 router.get('/about', async (req, res) => {
     try{
         res.render('about', {

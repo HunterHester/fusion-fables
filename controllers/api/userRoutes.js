@@ -25,6 +25,9 @@ router.post('/', async (req, res) => {
 router.get('/', async (req, res) => {
     try {
         const userData = await User.findAll({
+            attributes: {
+                exclude: ['password', 'email']
+            }
         });
         res.status(200).json(userData);
     } catch (err) {
