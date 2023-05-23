@@ -36,7 +36,13 @@ Group-Project-2 (A Collaborative Writing Platform)
 
 ## Description
 
+Are you or a creative talent you know experiencing writers block? Well then fusion fables is the platform for you. Showcase your work, join our community and collaborate with other talented professionals in a melting pot of creativity that is sure to get you out of your rut and back onto the road. 
 
+Fusion Fables was established for writers to come together to harness the fusion of collaboration and community. This is the space where innovation can be allowed to exceed beyond the power of one mind. Join our community, and allow this intuitive platform to springboard your narratives to unimagined realms. 
+
+Our teams motivation behind making this application was to create a collaborative site where writers can come and cultivate new ideas for their current work and contribute to others, giving new life to stagnating ideas. This was our teams very first full stack web application. It utilizes a MySQL database, API middleware, and a clean, brand forward facing UI.
+
+Challenges faced while creating the application were git merge conflicts, the utilization of the Handlebars template engine, our 2 week time crunch, and project bloating. However much of these were overshadowed by our successes which included exceeding our MVP (implementation of additional routing and functionality), project strategy and task delegation, pair programming, and direct application of an agile work flow.
 
 ## Live URL
 
@@ -48,17 +54,7 @@ https://drive.google.com/file/d/1rs7Uj6IAD6Ud4okg2N-DwEgH_f7YYtfG/view
 
 ## Screenshots
 
-![Screenshot1-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/5b998d41-f9a2-4a0e-87f3-9f299d73cd7f)
 
-![Screenshot2-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/bb7af314-6024-4f48-b264-c0a46650bf00)
-
-![Screenshot3-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/58579050-cf24-4f3f-8718-a35935770db9)
-
-![Screenshot4-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/1e033748-fb64-44b6-a8df-8a267a6da32f)
-
-![Screenshot5-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/a9f6fa07-5fee-4f20-b692-dd3f45bb02cc)
-
-![Screenshot6-project-2](https://github.com/HunterHester/fusion-fables/assets/120127903/56c1e0db-5c99-457d-b7b7-8cb6110fc420)
 
 ## Technologies Used
 
@@ -127,11 +123,17 @@ Features of the application include the users ability to create an authorized ac
 
 ## Usage Information
 
-
+Usage of this application is very intuitive, once users visit the site fusionfables.com, they will see a public facing feed, and a login button where they will be prompted to either login or create an account. From there navigation of the entire application can be conducted, and users can contribute and start creating content instantly.
 
 ## Suggested Future Development
 
-
+- Functionality allowing users to favorite specific content
+- Addition of a friends feature
+- Public post editing (revisions) -> creating an even more collaborative site
+- Version control (allowing creators to keep track of the different stages of their content)
+- Users ability to up-vote & like content
+- Dark mode toggle
+- Including unit testing
 
 ## Contribution Guidelines
 
