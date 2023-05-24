@@ -11,7 +11,6 @@ router.post('/', async (req, res) => {
             allow_comments: req.body.allow_comments,
             user_id: req.session.user_id || req.body.user_id
         });
-        console.log(newPost);
         res.status(200).json(newPost);
         console.log('Post created!');
     } catch (err) {
@@ -19,7 +18,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// READ all posts (JSON-tests)
+// READ all posts
 router.get("/", async (req, res) => {
     try {
         const postData = await Post.findAll({
@@ -41,32 +40,6 @@ router.get("/", async (req, res) => {
         res.status(500).json(err);
     }
 });
-
-// // READ Posts by ID
-// router.get("/:id", async (req, res) => {
-//     try {
-//         const postData = await Post.findAll({
-//             where: {
-//                 id: req.params.id,
-//             },
-//             include: [{
-//                 model: User,
-//                 attributes: { exclude: ['password', 'email'] },
-//             }, 
-//             {
-//                 model: Comment,
-//                 include: {
-//                     model: User,
-//                     attributes: ['username'],
-//                 }
-//             }],
-//             order: [['updated_at', 'DESC']]
-//         })
-//         res.status(200).json(postData);
-//     } catch (err) {
-//         res.status(500).json(err);
-//     }
-// });
 
 // READ Posts by ID with REVISIONS
 router.get("/:id", async (req, res) => {
@@ -112,6 +85,7 @@ router.put('/:id', async (req, res) => {
         });
         if (!updatedPost[0]) {
             res.status(400).json({ message: "No post found with that id!" });
+            return;
         }
         res.status(200).json(updatedPost);
         console.log('Post updated!');

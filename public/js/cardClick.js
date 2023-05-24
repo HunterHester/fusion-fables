@@ -1,3 +1,4 @@
+// Click Handler for Post Cards
 const goToPost = async (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -5,13 +6,7 @@ const goToPost = async (event) => {
     window.location.href = `/u/${event.currentTarget.dataset.user}/${event.currentTarget.dataset.id}`;
 };
 
-const editPostHandler = async (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    window.location.href = `/revise/${event.target.dataset.id}`;
-};
-
+// API Handler for EDIT comment
 const editComment = async (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -42,6 +37,7 @@ const editComment = async (event) => {
     }
 };
 
+// HTML Handler for EDIT comment
 const editCommentHandler = async (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -65,6 +61,7 @@ const editCommentHandler = async (event) => {
     document.getElementById('edit-comment-form').addEventListener('submit', editComment);
 };
 
+// API Handler for DELETE post
 const delPost = async (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -80,6 +77,7 @@ const delPost = async (event) => {
     }
 };
 
+// API Handler for DELETE comment
 const delComment = async (event) => {
     event.preventDefault();
     event.stopPropagation();
@@ -95,6 +93,7 @@ const delComment = async (event) => {
     }
 };
 
+// API Handler for DELETE Revision
 const delRevision = async (event) => {
     event.preventDefault();
     event.stopPropagation();
