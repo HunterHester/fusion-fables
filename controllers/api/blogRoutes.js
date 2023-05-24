@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// READ all posts (JSON-tests)
+// READ all posts
 router.get("/", async (req, res) => {
     try {
         const postData = await Post.findAll({

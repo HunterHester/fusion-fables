@@ -1,8 +1,7 @@
 const router = require('express').Router();
 const { Comment, Post, User } = require('../models');
-const withAuth = require('../utils/auth');
 
-// LANDING PAGE: renders 'home.handlebars'
+// LANDING PAGE: Renders 'home.handlebars'
 router.get('/', async (req, res) => {
     try {
         const postData = await Post.findAll({

@@ -17,7 +17,7 @@ router.post('/', async (req, res) => {
     }
 });
 
-// READ all Revisions (JSON-tests)
+// READ all Revisions
 router.get("/", async (req, res) => {
     try {
         const revisionData = await Revision.findAll({

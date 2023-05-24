@@ -1,10 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Comment, Revision } = require('../models');
 
-// router.get('/:u/:id/:edit', async (req, res) => {
-
-// })
-
+// RENDERS: 'post.handlebars' => READ one POST by ID
 router.get('/:u/:id', async (req, res) => {
     try {
         const postData = await Post.findByPk( req.params.id, {
@@ -31,7 +28,9 @@ router.get('/:u/:id', async (req, res) => {
         });
         
         if (!postData) {
-            res.status(404).json({ message: "No blog posts found" });
+            res.render('404', {
+                loggedIn: req.session.logged_in,
+            });
             return;
         };
 
@@ -63,7 +62,7 @@ router.get('/:u/:id', async (req, res) => {
     }
 });
 
-// READ one user by ID OR Username
+// RENDERS: 'userPage.handlebars' => READ one user by ID OR Username
 router.get('/:u', async (req, res) => {
     try {
         let userData;
@@ -109,8 +108,9 @@ router.get('/:u', async (req, res) => {
         }
 
         if (!userData) {
-            // TODO: ADD .render() OF 404 PAGE
-            res.status(404).json({ message: 'No user with this ID!' });
+            res.render('404', {
+                loggedIn: req.session.logged_in,
+            });
             return;
         }
         
